@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BankDatabaseModelStoreContainer" CdmEntityContainer="BankDatabaseEntities">
+    <EntitySetMapping Name="Hesap">
+      <EntityTypeMapping TypeName="BankDatabaseModel.Hesap">
+        <MappingFragment StoreEntitySet="Hesap">
+          <ScalarProperty Name="hesapNo" ColumnName="hesapNo" />
+          <ScalarProperty Name="bakiye" ColumnName="bakiye" />
+          <ScalarProperty Name="hesapAcilisTarihi" ColumnName="hesapAcilisTarihi" />
+          <ScalarProperty Name="musteriNo" ColumnName="musteriNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="IslemTuru">
+      <EntityTypeMapping TypeName="BankDatabaseModel.IslemTuru">
+        <MappingFragment StoreEntitySet="IslemTuru">
+          <ScalarProperty Name="islemTuruID" ColumnName="islemTuruID" />
+          <ScalarProperty Name="tur" ColumnName="tur" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Musteri">
+      <EntityTypeMapping TypeName="BankDatabaseModel.Musteri">
+        <MappingFragment StoreEntitySet="Musteri">
+          <ScalarProperty Name="musteriNo" ColumnName="musteriNo" />
+          <ScalarProperty Name="tckn" ColumnName="tckn" />
+          <ScalarProperty Name="sifre" ColumnName="sifre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MusteriBilgileri">
+      <EntityTypeMapping TypeName="BankDatabaseModel.MusteriBilgileri">
+        <MappingFragment StoreEntitySet="MusteriBilgileri">
+          <ScalarProperty Name="musteriNo" ColumnName="musteriNo" />
+          <ScalarProperty Name="ad" ColumnName="ad" />
+          <ScalarProperty Name="soyad" ColumnName="soyad" />
+          <ScalarProperty Name="dogumTarihi" ColumnName="dogumTarihi" />
+          <ScalarProperty Name="kayıtTarihi" ColumnName="kayıtTarihi" />
+          <ScalarProperty Name="cepTelefonu" ColumnName="cepTelefonu" />
+          <ScalarProperty Name="mail" ColumnName="mail" />
+          <ScalarProperty Name="acikAdres" ColumnName="acikAdres" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ParaTransferi">
+      <EntityTypeMapping TypeName="BankDatabaseModel.ParaTransferi">
+        <MappingFragment StoreEntitySet="ParaTransferi">
+          <ScalarProperty Name="ptID" ColumnName="ptID" />
+          <ScalarProperty Name="aliciHesapNo" ColumnName="aliciHesapNo" />
+          <ScalarProperty Name="gonderenHesapNo" ColumnName="gonderenHesapNo" />
+          <ScalarProperty Name="islemTutari" ColumnName="islemTutari" />
+          <ScalarProperty Name="aciklama" ColumnName="aciklama" />
+          <ScalarProperty Name="islemTarihi" ColumnName="islemTarihi" />
+          <ScalarProperty Name="islemTuruID" ColumnName="islemTuruID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="BankDatabaseModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="BankDatabaseModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="BankDatabaseModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="BankDatabaseModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="BankDatabaseModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BankDatabaseModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="BankDatabaseModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BankDatabaseModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="BankDatabaseModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="BankDatabaseModel.Store.sp_upgraddiagrams" />
+  </EntityContainerMapping>
+</Mapping>

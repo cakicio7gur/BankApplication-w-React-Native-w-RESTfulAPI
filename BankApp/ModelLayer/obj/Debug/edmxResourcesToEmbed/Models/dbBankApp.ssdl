@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BankDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AcilisPlatformu">
+    <Key>
+      <PropertyRef Name="acilisPlatformID" />
+    </Key>
+    <Property Name="acilisPlatformID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="acilisPlatformAdi" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Hesap">
+    <Key>
+      <PropertyRef Name="hesapNo" />
+    </Key>
+    <Property Name="hesapNo" Type="int" Nullable="false" />
+    <Property Name="bakiye" Type="money" />
+    <Property Name="hesapAcilisTarihi" Type="date" />
+    <Property Name="musteriNo" Type="int" />
+    <Property Name="acilisPlatformID" Type="int" />
+    <Property Name="ekNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="IslemTuru">
+    <Key>
+      <PropertyRef Name="islemTuruID" />
+    </Key>
+    <Property Name="islemTuruID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tur" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Musteri">
+    <Key>
+      <PropertyRef Name="musteriNo" />
+    </Key>
+    <Property Name="musteriNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tckn" Type="nvarchar" MaxLength="11" />
+    <Property Name="sifre" Type="nvarchar" MaxLength="20" />
+    <Property Name="ad" Type="nvarchar" MaxLength="20" />
+    <Property Name="soyad" Type="nvarchar" MaxLength="30" />
+    <Property Name="dogumTarihi" Type="date" />
+    <Property Name="cepTelefonu" Type="nvarchar" MaxLength="11" />
+    <Property Name="mail" Type="nvarchar" MaxLength="50" />
+    <Property Name="acikAdres" Type="nvarchar" MaxLength="200" />
+    <Property Name="kayıtTarihi" Type="date" />
+    <Property Name="acilisPlatformID" Type="int" />
+  </EntityType>
+  <EntityType Name="ParaTransferi">
+    <Key>
+      <PropertyRef Name="ptID" />
+    </Key>
+    <Property Name="ptID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="aliciHesapNo" Type="int" />
+    <Property Name="gonderenHesapNo" Type="int" />
+    <Property Name="islemTutari" Type="money" />
+    <Property Name="aciklama" Type="nvarchar" MaxLength="100" />
+    <Property Name="islemTarihi" Type="date" />
+    <Property Name="islemTuruID" Type="int" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_Hesap_AcilisPlatformu">
+    <End Role="AcilisPlatformu" Type="Self.AcilisPlatformu" Multiplicity="0..1" />
+    <End Role="Hesap" Type="Self.Hesap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AcilisPlatformu">
+        <PropertyRef Name="acilisPlatformID" />
+      </Principal>
+      <Dependent Role="Hesap">
+        <PropertyRef Name="acilisPlatformID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Hesap_Musteri">
+    <End Role="Musteri" Type="Self.Musteri" Multiplicity="0..1" />
+    <End Role="Hesap" Type="Self.Hesap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Musteri">
+        <PropertyRef Name="musteriNo" />
+      </Principal>
+      <Dependent Role="Hesap">
+        <PropertyRef Name="musteriNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Musteri_AcilisPlatformu">
+    <End Role="AcilisPlatformu" Type="Self.AcilisPlatformu" Multiplicity="0..1" />
+    <End Role="Musteri" Type="Self.Musteri" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AcilisPlatformu">
+        <PropertyRef Name="acilisPlatformID" />
+      </Principal>
+      <Dependent Role="Musteri">
+        <PropertyRef Name="acilisPlatformID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ParaTransferi_IslemTuru">
+    <End Role="IslemTuru" Type="Self.IslemTuru" Multiplicity="0..1" />
+    <End Role="ParaTransferi" Type="Self.ParaTransferi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="IslemTuru">
+        <PropertyRef Name="islemTuruID" />
+      </Principal>
+      <Dependent Role="ParaTransferi">
+        <PropertyRef Name="islemTuruID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="BankDatabaseModelStoreContainer">
+    <EntitySet Name="AcilisPlatformu" EntityType="Self.AcilisPlatformu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Hesap" EntityType="Self.Hesap" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="IslemTuru" EntityType="Self.IslemTuru" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Musteri" EntityType="Self.Musteri" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ParaTransferi" EntityType="Self.ParaTransferi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Hesap_AcilisPlatformu" Association="Self.FK_Hesap_AcilisPlatformu">
+      <End Role="AcilisPlatformu" EntitySet="AcilisPlatformu" />
+      <End Role="Hesap" EntitySet="Hesap" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Hesap_Musteri" Association="Self.FK_Hesap_Musteri">
+      <End Role="Musteri" EntitySet="Musteri" />
+      <End Role="Hesap" EntitySet="Hesap" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Musteri_AcilisPlatformu" Association="Self.FK_Musteri_AcilisPlatformu">
+      <End Role="AcilisPlatformu" EntitySet="AcilisPlatformu" />
+      <End Role="Musteri" EntitySet="Musteri" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ParaTransferi_IslemTuru" Association="Self.FK_ParaTransferi_IslemTuru">
+      <End Role="IslemTuru" EntitySet="IslemTuru" />
+      <End Role="ParaTransferi" EntitySet="ParaTransferi" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

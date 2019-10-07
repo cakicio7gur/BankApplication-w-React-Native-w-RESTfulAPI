@@ -1,0 +1,11 @@
+C:\Users\LENOVO\source\repos\BankApp\ModelLayer\bin\Debug\ModelLayer.dll.config
+C:\Users\LENOVO\source\repos\BankApp\ModelLayer\bin\Debug\ModelLayer.dll
+C:\Users\LENOVO\source\repos\BankApp\ModelLayer\bin\Debug\ModelLayer.pdb
+C:\Users\LENOVO\source\repos\BankApp\ModelLayer\bin\Debug\EntityFramework.dll
+C:\Users\LENOVO\source\repos\BankApp\ModelLayer\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\LENOVO\source\repos\BankApp\ModelLayer\bin\Debug\EntityFramework.xml
+C:\Users\LENOVO\source\repos\BankApp\ModelLayer\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\LENOVO\source\repos\BankApp\ModelLayer\obj\Debug\ModelLayer.csproj.CoreCompileInputs.cache
+C:\Users\LENOVO\source\repos\BankApp\ModelLayer\obj\Debug\ModelLayer.csproj.CopyComplete
+C:\Users\LENOVO\source\repos\BankApp\ModelLayer\obj\Debug\ModelLayer.dll
+C:\Users\LENOVO\source\repos\BankApp\ModelLayer\obj\Debug\ModelLayer.pdb
