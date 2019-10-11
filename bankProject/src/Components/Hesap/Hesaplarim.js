@@ -1,6 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, Text, View, TouchableHighlight,ScrollView } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import styles from '../styles.js';
 
 export default class Hesaplarim extends React.Component {
 
@@ -52,9 +52,9 @@ export default class Hesaplarim extends React.Component {
         return (
             <View style={styles.container}>
             <ScrollView>
-                <View style={styles.buttonContainer}>
-                    <TouchableHighlight style={styles.buttonStyleHesap}>
-                        <Text style={styles.buttonColorHesap}>HESAPLARIM</Text>
+                <View style={styles.buttonContainerHesaplarim}>
+                    <TouchableHighlight style={styles.buttonStyleHesaplarim}>
+                        <Text style={styles.buttonColorMenu}>HESAPLARIM</Text>
                     </TouchableHighlight>
                 </View>
                 <View style={styles.hesaplarView}>
@@ -64,56 +64,4 @@ export default class Hesaplarim extends React.Component {
             </View>
         );
     }
-}
-
-const styles = {
-    container: {
-        flex: 1,
-    },
-    hesaplarView: {
-        flex: 1,
-        marginTop: 5,
-    },
-    hesapBilgiContainer: {
-        flex: .18,
-        backgroundColor: "white",
-        padding: 5,
-        margin: 10,
-        borderWidth: 0.4,
-        borderRadius: 5,
-        borderColor: "#c5002f",
-        fontFamily: 'Bahnschrift',
-        //height: 100,
-    },
-    hesapNo: {
-        fontWeight: "bold",
-        fontSize: 18,
-        fontFamily: 'Bahnschrift',
-    },
-    hesapText: {
-        marginTop: 5,
-        fontSize: 16,
-        fontFamily: 'Bahnschrift',
-    },
-    buttonContainer: {
-        marginTop: 15,
-        justifyContent: "center",
-        alignItems: 'center'
-      },
-      buttonStyleHesap: {
-        backgroundColor: "#c5002F",
-        justifyContent: "center",
-        alignItems: "center",
-        borderRadius: 5,
-        padding: 8,
-        margin: 5,
-        flexDirection: "row",
-        width: '94%',
-      },
-      buttonColorHesap: {
-        color: 'white',
-        fontWeight: 'bold',
-        fontFamily: 'Bahnschrift',
-        fontSize: 14
-      },
 }

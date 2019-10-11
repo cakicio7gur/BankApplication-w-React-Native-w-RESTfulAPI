@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, TouchableHighlight, ScrollView } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import styles from '../styles.js';
 export default class HavaleGonderenHesap extends Component {
   constructor(props) {
     super(props);
@@ -10,13 +10,13 @@ export default class HavaleGonderenHesap extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={styles.container,{marginTop:15}}>
         <ScrollView>
           <View style={styles.body}>
             <View style={styles.buttonContainer}>
               <TouchableHighlight
                 style={styles.buttonStyleHesap}>
-                <Text style={styles.buttonColorHesap}>GÖNDEREN HESAP</Text>
+                <Text style={styles.buttonColorMenu}>GÖNDEREN HESAP</Text>
               </TouchableHighlight>
             </View>
             <View style={styles.contContainer}>
@@ -56,70 +56,3 @@ export default class HavaleGonderenHesap extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  body: {
-    flex: 0.4,
-    backgroundColor: "#F8F8F8",
-    alignItems: 'center',
-    marginTop:15
-  },
-  buttonContainer: {
-    width: '85%',
-    justifyContent: "center",
-  },
-  buttonStyleHesap: {
-    backgroundColor: "#c5002F",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 5,
-    padding: 6,
-    margin: 5,
-    flexDirection: "row"
-  },
-  buttonColorHesap: {
-    color: 'white',
-    fontWeight: 'bold',
-    fontFamily: 'Bahnschrift',
-    fontSize: 14
-  },
-  buttonStyleMenu: {
-    backgroundColor: "#c5002F",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 5,
-    padding: 15,
-    margin: 5,
-    flexDirection: "row"
-  },
-  buttonColorMenu: {
-    color: 'white',
-    fontWeight: 'bold',
-    fontFamily: 'Bahnschrift',
-    fontSize: 14
-  },
-  hesapNo: {
-    fontWeight: "bold",
-    fontSize: 16,
-    fontFamily: 'Bahnschrift',
-  },
-  hesapText: {
-    marginTop: 5,
-    fontSize: 14,
-    fontFamily: 'Bahnschrift',
-  },
-  contContainer:{
-    justifyContent: "flex-start",
-    alignItems: "flex-start",
-    borderRadius: 5,
-    padding: 5,
-    margin: 5,
-    flexDirection: "row",
-    borderWidth: 0.8,
-    borderColor: "#c5002F",
-    fontFamily: 'Bahnschrift',
-  },
-});

@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import { TouchableOpacity, Text, View, TextInput, Alert } from 'react-native';
-import { TouchableHighlight } from 'react-native-gesture-handler';
-import PhoneInput from 'react-native-phone-input'
-import ModalPicker,{ModalPickerImage} from 'react-native-modal-picker'
-
+import { TouchableOpacity, TouchableHighlight,Text, View, TextInput, Alert } from 'react-native';
+import styles from '../styles.js';
 
 export default class KullaniciKayit extends React.Component {
   constructor(props) {
@@ -16,21 +13,8 @@ export default class KullaniciKayit extends React.Component {
       pickerData:''
     }
   }
-  componentDidMount(){
-    this.setState({
-        pickerData: this.phone.getPickerData()
-    })
-  }
-  onPressFlag(){
-    this.myCountryPicker.open()
-  }
-  
-  selectCountry(country){
-    this.phone.selectCountry(country.iso2)
-  }
-
   validateText = (text) => {
-    alph=/^[a-z\sa-zA-ZğüşöçİĞÜŞÖÇ\sA-Z]+$/
+    const alph=/^[a-z\sa-zA-ZğüşöçİĞÜŞÖÇ\sA-Z]+$/
     if (alph.test(text) && text != '') {
       this.setState({ validateText: true })
     }
@@ -77,12 +61,12 @@ export default class KullaniciKayit extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.inputContainer}>
+        <View style={styles.inputContainerKK}>
           <TextInput id='tckn'
             placeholder="TCKN"
             underlineColorAndroid='transparent'
             placeholderTextColor="gray"
-            style={styles.inputStyle}
+            style={styles.inputStyleKK}
             maxLength={11}
             keyboardType={'phone-pad'}
             onChangeText={(text) => {
@@ -97,7 +81,7 @@ export default class KullaniciKayit extends React.Component {
             placeholder="Şifre"
             underlineColorAndroid='transparent'
             placeholderTextColor="gray"
-            style={styles.inputStyle}
+            style={styles.inputStyleKK}
             secureTextEntry={true}
             maxLength={20}
             onChangeText={(text) => {
@@ -112,7 +96,7 @@ export default class KullaniciKayit extends React.Component {
             placeholder="Ad"
             underlineColorAndroid='transparent'
             placeholderTextColor="gray"
-            style={styles.inputStyle}
+            style={styles.inputStyleKK}
             maxLength={20}
             onChangeText={(text) => {
               let musteri = this.state.Musteri;
@@ -121,23 +105,12 @@ export default class KullaniciKayit extends React.Component {
               this.validateText(text)
             }}
           />
-            <PhoneInput
-              ref={(ref) => { this.phone = ref; }}
-              onPressFlag={this.onPressFlag}
-            />
-            <ModalPickerImage
-              ref={(ref) => { this.myCountryPicker = ref; }}
-              data={this.state.pickerData}
-              onChange={(country)=>{ this.selectCountry(country) }}
-              cancelText='Cancel'
-            />
-
-
+          
           <TextInput id='soyad'
             placeholder="Soyad"
             underlineColorAndroid='transparent'
             placeholderTextColor="gray"
-            style={styles.inputStyle}
+            style={styles.inputStyleKK}
             maxLength={20}
             onChangeText={(text) => {
               let musteri = this.state.Musteri;
@@ -147,64 +120,17 @@ export default class KullaniciKayit extends React.Component {
             }}
           />
         </View>
-        <View style={styles.buttonContainer}>
+        <View style={styles.buttonContainerKK}>
           <TouchableOpacity
-            style={styles.buttonStyle}
+            style={styles.buttonStyleKK}
             onPress={() => { this.KayitOl() }}>
-            <Text style={styles.buttonColor} > Devam </Text>
+            <Text style={styles.buttonColorKK} > Devam </Text>
           </TouchableOpacity>
         </View>
-        <TouchableHighlight style={styles.buttonRegister}>
-          <Text style={styles.registerColor}>Kaydı tamamlamak için devam edin..</Text>
+        <TouchableHighlight style={styles.buttonRegisterKK}>
+          <Text style={styles.buttonColor}>Kaydı tamamlamak için devam edin..</Text>
         </TouchableHighlight>
       </View>
     );
   }
-}
-const styles = {
-  container: {
-    flex: 1,
-    backgroundColor: "#F8F8F8"
-  },
-  inputContainer: {
-    flex: 3,
-    justifyContent: "space-evenly",
-  },
-  inputStyle: {
-    backgroundColor: "#F8F8F8",
-    padding: 5,
-    margin: 25,
-    borderBottomWidth: 2,
-    borderRadius: 5,
-    borderColor: "#c5002F",
-    fontFamily: 'Bahnschrift',
-  },
-  buttonContainer: {
-    flex: 0.5,
-    justifyContent: "center",
-  },
-  buttonStyle: {
-    backgroundColor: "#c5002f",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 5,
-    padding: 10,
-    margin: 100,
-    flexDirection: "row"
-  },
-  buttonColor: {
-    color: 'white',
-    fontWeight: 'bold',
-    fontFamily: 'Bahnschrift',
-  },
-  buttonRegister: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 8,
-    borderRadius: 30,
-  },
-  registerColor: {
-    fontFamily: 'Bahnschrift',
-  },
 }

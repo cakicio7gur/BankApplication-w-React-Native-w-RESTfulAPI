@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { TouchableOpacity, Image, Text, View, TextInput, TouchableHighlight, Alert } from 'react-native';
-import PhoneInput from 'react-native-phone-input'
+import styles from '../styles.js';
 
 export default class Login extends React.Component {
   constructor(props) {
@@ -57,12 +57,12 @@ export default class Login extends React.Component {
         </View>
 
         <View style={styles.bosluk}></View>
-        <View style={styles.inputContainer}>
+        <View style={styles.inputContainerL}>
           <TextInput
             placeholder="TCKN"
             underlineColorAndroid='transparent'
             placeholderTextColor="gray"
-            style={styles.inputStyle}
+            style={styles.inputStyleL}
             maxLength={11}
             value = {this.state.tckn}
             keyboardType={'phone-pad'}
@@ -73,7 +73,7 @@ export default class Login extends React.Component {
             placeholder="***********"
             underlineColorAndroid='transparent'
             placeholderTextColor="gray"
-            style={styles.inputStyle}
+            style={styles.inputStyleL}
             secureTextEntry={true}
             maxLength={16}
             onChangeText={(text) => this.validatePassword(text)} 
@@ -81,91 +81,24 @@ export default class Login extends React.Component {
 
         </View>
         <View style={styles.bosluk}></View>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.buttonStyle}
+        <View style={styles.buttonContainerL}>
+          <TouchableOpacity style={styles.buttonStyleKK}
             onPress={() => { this.props.navigation.navigate('Anasayfa') }}>
-            <Text style={styles.buttonColor} > Giriş Yap </Text>
+            <Text style={styles.buttonColorKK} > Giriş Yap </Text>
           </TouchableOpacity>
         </View>
 
-        <TouchableHighlight style={styles.buttonRegister}>
-          <Text style={styles.question}>Bir Hesabın Yok Mu?</Text>
+        <TouchableHighlight style={styles.buttonRegisterKK}>
+          <Text style={styles.buttonColor}>Bir Hesabın Yok Mu?</Text>
         </TouchableHighlight>
 
-        <TouchableOpacity style={styles.buttonRegister}
+        <TouchableOpacity style={styles.buttonRegisterKK}
             onPress={() => { this.props.navigation.navigate('KullaniciKayit') }}>
-          <Text style={styles.registerColor}>Kayıt Ol</Text>
+          <Text style={styles.registerColorL}>Kayıt Ol</Text>
         </TouchableOpacity>
 
         <View style={styles.bottomBosluk}></View>
       </View>
     );
-  }
-}
-const styles = {
-  container: {
-    flex: 1,
-    backgroundColor: "#F8F8F8"
-  },
-  imageStyle: {
-    flex: 1,
-    width: null,
-    height: null
-  },
-  styleLogo: {
-    flex: 1,
-  },
-  inputContainer: {
-    flex: 0.6,
-    justifyContent: "space-evenly",
-  },
-  inputStyle: {
-    backgroundColor: "#F8F8F8",
-    padding: 5,
-    margin: 20,
-    borderBottomWidth: 2,
-    borderColor: "#c5002F",
-    fontFamily: 'Bahnschrift',
-  },
-  buttonContainer: {
-    flex: 0.4,
-    justifyContent: "center",
-  },
-  buttonStyle: {
-    backgroundColor: "#c5002f",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 5,
-    padding: 10,
-    margin: 100,
-    flexDirection: "row"
-  },
-  buttonColor: {
-    color: 'white',
-    fontWeight: 'bold',
-    fontFamily: 'Bahnschrift',
-  },
-  buttonRegister: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 8,
-    borderRadius: 30,
-  },
-  registerColor: {
-    fontWeight: 'bold',
-    fontFamily: 'Bahnschrift',
-  },
-  bosluk: {
-    flex: 0.2,
-  },
-  boslukTop: {
-    flex: 0.5,
-  },
-  bottomBosluk: {
-    flex: 0.1
-  },
-  question: {
-    fontFamily: 'Bahnschrift',
   }
 }

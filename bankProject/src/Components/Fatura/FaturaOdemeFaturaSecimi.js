@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, ImageBackground, TouchableHighlight, ScrollView } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import styles from '../styles.js';
 export default class FaturaOdemeFaturaSecimi extends Component {
   constructor(props) {
     super(props);
@@ -11,20 +11,19 @@ export default class FaturaOdemeFaturaSecimi extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={styles.container,{marginTop:15}}>
         <ScrollView>
-          <View style={styles.header}></View>
           <View style={styles.body}>
             <View style={styles.buttonContainer}>
               <TouchableHighlight
                 style={styles.buttonStyleHesap}>
-                <Text style={styles.buttonColorHesap}>FATURA SEÇİMİ</Text>
+                <Text style={styles.buttonColorMenu}>FATURA SEÇİMİ</Text>
               </TouchableHighlight>
             </View>
 
             <View style={styles.buttonContainer}>
               <TouchableOpacity
-                style={styles.buttonStyle}>
+                style={styles.buttonStyleFaturaSecimi}>
                 <Text style={styles.buttonColor}>
                   Son Ödeme Tarihi: 22/03/2019{"\n"}{"\n"}
                   Ad Soyad: Öz*** Ça**** {"\n"}{"\n"}
@@ -35,7 +34,7 @@ export default class FaturaOdemeFaturaSecimi extends Component {
 
             <View style={styles.buttonContainer}>
               <TouchableOpacity
-                style={styles.buttonStyle}>
+                style={styles.buttonStyleFaturaSecimi}>
                 <Text style={styles.buttonColor}>
                   Son Ödeme Tarihi: 22/03/2019{"\n"}{"\n"}
                   Ad Soyad: Öz*** Ça**** {"\n"}{"\n"}
@@ -45,7 +44,7 @@ export default class FaturaOdemeFaturaSecimi extends Component {
             </View>
             <View style={styles.buttonContainer}>
               <TouchableOpacity
-                style={styles.buttonStyle}>
+                style={styles.buttonStyleFaturaSecimi}>
                 <Text style={styles.buttonColor}>
                   Son Ödeme Tarihi: 22/03/2019{"\n"}{"\n"}
                   Ad Soyad: Öz*** Ça**** {"\n"}{"\n"}
@@ -55,7 +54,7 @@ export default class FaturaOdemeFaturaSecimi extends Component {
             </View>
             <View style={styles.buttonContainer}>
               <TouchableOpacity
-                style={styles.buttonStyle}>
+                style={styles.buttonStyleFaturaSecimi}>
                 <Text style={styles.buttonColor}>
                   Son Ödeme Tarihi: 22/03/2019{"\n"}{"\n"}
                   Ad Soyad: Öz*** Ça**** {"\n"}{"\n"}
@@ -65,7 +64,7 @@ export default class FaturaOdemeFaturaSecimi extends Component {
             </View>
             <View style={styles.buttonContainer}>
               <TouchableOpacity
-                style={styles.buttonStyle}>
+                style={styles.buttonStyleFaturaSecimi}>
                 <Text style={styles.buttonColor}>
                   Son Ödeme Tarihi: 22/03/2019{"\n"}{"\n"}
                   Ad Soyad: Öz*** Ça**** {"\n"}{"\n"}
@@ -75,7 +74,7 @@ export default class FaturaOdemeFaturaSecimi extends Component {
             </View>
             <View style={styles.buttonContainer}>
               <TouchableOpacity
-                style={styles.buttonStyle}>
+                style={styles.buttonStyleFaturaSecimi}>
                 <Text style={styles.buttonColor}>
                   Son Ödeme Tarihi: 22/03/2019{"\n"}{"\n"}
                   Ad Soyad: Öz*** Ça**** {"\n"}{"\n"}
@@ -97,66 +96,3 @@ export default class FaturaOdemeFaturaSecimi extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  header: {
-    flex: 0.30,
-    backgroundColor: "#F8F8F8",
-    marginTop: 15,
-    alignItems: 'center',
-  },
-  body: {
-    flex: 0.5,
-    backgroundColor: "#F8F8F8",
-    alignItems: 'center',
-  },
-  buttonContainer: {
-    width: '85%',
-    justifyContent: "center",
-  },
-  buttonStyle: {
-    justifyContent: "flex-start",
-    alignItems: "flex-start",
-    borderRadius: 5,
-    padding: 12,
-    margin: 5,
-    flexDirection: "row",
-    borderWidth: 0.8,
-    borderColor: "#c5002F",
-  },
-  buttonColor: {
-    fontFamily: 'Bahnschrift',
-  },
-  buttonStyleHesap: {
-    backgroundColor: "#c5002F",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 5,
-    padding: 6,
-    margin: 5,
-    flexDirection: "row"
-  },
-  buttonColorHesap: {
-    color: 'white',
-    fontWeight: 'bold',
-    fontFamily: 'Bahnschrift',
-    fontSize: 14
-  },
-  buttonStyleMenu: {
-    backgroundColor: "#c5002F",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 5,
-    padding: 15,
-    margin: 5,
-    flexDirection: "row"
-  },
-  buttonColorMenu: {
-    color: 'white',
-    fontWeight: 'bold',
-    fontFamily: 'Bahnschrift',
-    fontSize: 14
-  },
-});

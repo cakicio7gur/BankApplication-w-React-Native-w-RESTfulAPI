@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { TouchableOpacity, Text, View, TextInput,Alert } from 'react-native';
 import DateTimePicker from "react-native-modal-datetime-picker";
 import moment from 'moment';
-
+import styles from '../styles.js';
 export default class KullaniciKayit2 extends React.Component {
   constructor(props) {
     super(props)
@@ -107,7 +107,7 @@ showPicker = () => {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.inputContainer}>
+        <View style={styles.inputContainerKK}>
         <View style={{flexDirection:"row"}}>
         <Text style={{margin:15}}>Doğum Tarihi:</Text>
         <TouchableOpacity onPress={this.showPicker} style={styles.datetimeText}>
@@ -127,7 +127,7 @@ showPicker = () => {
             placeholder="E-Mail"
             underlineColorAndroid='transparent'
             placeholderTextColor="gray"
-            style={styles.inputStyle}
+            style={styles.inputStyleKK}
             onChangeText={(text) =>{
               let musteri = this.state.Musteri;
               musteri.mail = text;
@@ -140,7 +140,7 @@ showPicker = () => {
             placeholder="Cep Telefonu"
             underlineColorAndroid='transparent'
             placeholderTextColor="gray"
-            style={styles.inputStyle}
+            style={styles.inputStyleKK}
             onChangeText={(text) =>{
               let musteri = this.state.Musteri;
               musteri.cepTelefonu = text;
@@ -153,7 +153,7 @@ showPicker = () => {
             placeholder="Açık Adres"
             underlineColorAndroid='transparent'
             placeholderTextColor="gray"
-            style={styles.inputStyle}
+            style={styles.inputStyleKK}
             onChangeText={(text) =>{
               let musteri = this.state.Musteri;
               musteri.acikAdres = text;
@@ -162,77 +162,18 @@ showPicker = () => {
           />
 
         </View>
-        <View style={styles.buttonContainer}>
+        <View style={styles.buttonContainerKK}>
           <TouchableOpacity
-            style={styles.buttonStyle}
+            style={styles.buttonStyleKK}
             onPress={() => {this.KayitOl()}}>
-            <Text style={styles.buttonColor} > Kayıt Ol </Text>
+            <Text style={styles.buttonColorKK} > Kayıt Ol </Text>
           </TouchableOpacity>
         </View>
-        <TouchableOpacity style={styles.buttonRegister}
+        <TouchableOpacity style={styles.buttonRegisterKK}
           onPress={() => { this.props.navigation.navigate('Login') }}>
-          <Text style={styles.registerColor}>Zaten Üye Misin? Giriş Yap</Text>
+          <Text style={styles.buttonColor}>Zaten Üye Misin? Giriş Yap</Text>
         </TouchableOpacity>
       </View>
     );
   }
-}
-const styles = {
-  container: {
-    flex: 1,
-    backgroundColor: "#F8F8F8"
-  },
-  inputContainer: {
-    flex: 3,
-    justifyContent: "space-evenly",
-  },
-  inputStyle: {
-    backgroundColor: "#F8F8F8",
-    padding: 5,
-    margin: 25,
-    borderBottomWidth: 2,
-    borderRadius: 5,
-    borderColor: "#c5002F",
-    fontFamily: 'Bahnschrift',
-  },
-  buttonContainer: {
-    flex: 0.5,
-    justifyContent: "center",
-  },
-  buttonStyle: {
-    backgroundColor: "#c5002f",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 5,
-    padding: 10,
-    margin: 100,
-    flexDirection: "row"
-  },
-  buttonColor: {
-    color: 'white',
-    fontWeight: 'bold',
-    fontFamily: 'Bahnschrift',
-  },
-  buttonRegister: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 8,
-    borderRadius: 30,
-  },
-  registerColor: {
-    fontWeight: 'bold',
-    fontFamily: 'Bahnschrift',
-  },
-  datetimeText:{
-    borderRadius:5,
-    borderBottomWidth:2,
-    borderColor: '#c5002f', 
-    backgroundColor:'#f8f8f8',
-    width:'66%',
-    height:40,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginLeft: 11,
-  },
 }

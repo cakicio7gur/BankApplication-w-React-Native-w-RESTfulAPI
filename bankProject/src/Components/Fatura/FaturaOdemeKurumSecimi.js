@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, ImageBackground, TouchableHighlight, ScrollView } from 'react-native';
+import { Text, View, TouchableOpacity, ImageBackground, TouchableHighlight, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import styles from '../styles.js';
+
 export default class FaturaOdemeKurumSecimi extends Component {
   constructor(props) {
     super(props);
@@ -19,7 +21,7 @@ export default class FaturaOdemeKurumSecimi extends Component {
             <View style={styles.buttonContainer}>
               <TouchableHighlight
                 style={styles.buttonStyleHesap}>
-                <Text style={styles.buttonColorHesap}>KURUM SEÇİMİ</Text>
+                <Text style={styles.buttonColorMenu}>KURUM SEÇİMİ</Text>
               </TouchableHighlight>
             </View>
 
@@ -67,67 +69,6 @@ export default class FaturaOdemeKurumSecimi extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  header: {
-    flex: 0.3,
-    backgroundColor: "#F8F8F8",
-    padding: 30,
-    alignItems: 'center',
-  },
-  body: {
-    flex: 0.4,
-    backgroundColor: "#F8F8F8",
-    alignItems: 'center',
-  },
-  buttonContainer: {
-    width: '85%',
-    justifyContent: "center",
-  },
-  buttonStyle: {
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 5,
-    padding: 12,
-    margin: 5,
-    flexDirection: "row",
-    borderWidth: 0.8,
-    borderColor: "#c5002F",
-  },
-  buttonColor: {
-    fontFamily: 'Bahnschrift',
-  },
-  buttonStyleHesap: {
-    backgroundColor: "#c5002F",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 5,
-    padding: 6,
-    margin: 5,
-    flexDirection: "row"
-  },
-  buttonColorHesap: {
-    color: 'white',
-    fontWeight: 'bold',
-    fontFamily: 'Bahnschrift',
-    fontSize: 14
-  },
-  buttonStyleMenu: {
-    backgroundColor: "#c5002F",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 5,
-    padding: 15,
-    margin: 5,
-    flexDirection: "row"
-  },
-  buttonColorMenu: {
-    color: 'white',
-    fontWeight: 'bold',
-    fontFamily: 'Bahnschrift',
-    fontSize: 14
-  },
-});
+
+
 

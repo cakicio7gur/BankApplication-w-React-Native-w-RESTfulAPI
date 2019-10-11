@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, TouchableHighlight, ScrollView, TextInput } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import styles from '../styles.js';
 export default class HavaleAliciHesap extends Component {
   constructor(props) {
     super(props);
@@ -19,12 +19,12 @@ export default class HavaleAliciHesap extends Component {
             <View style={styles.buttonContainer}>
               <TouchableHighlight
                 style={styles.buttonStyleHesap}>
-                <Text style={styles.buttonColorHesap}>ABONE BİLGİLERİ</Text>
+                <Text style={styles.buttonColorMenu}>ABONE BİLGİLERİ</Text>
               </TouchableHighlight>
             </View>
             <View style={styles.buttonContainer}>
               <TextInput
-                style={styles.buttonStyle}
+                style={styles.buttonStyleAbone}
                 placeholder="Abone Numarası Giriniz..."
                 underlineColorAndroid='transparent'
                 placeholderTextColor="gray"
@@ -44,64 +44,3 @@ export default class HavaleAliciHesap extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  header: {
-    flex: 0.3,
-    backgroundColor: "#F8F8F8",
-    padding: 30,
-    alignItems: 'center',
-  },
-  body: {
-    flex: 0.4,
-    backgroundColor: "#F8F8F8",
-    alignItems: 'center',
-  },
-  buttonContainer: {
-    width: '85%',
-    justifyContent: "center",
-  },
-  buttonStyle: {
-    justifyContent: "flex-start",
-    alignItems: "flex-start",
-    borderRadius: 5,
-    padding: 6,
-    margin: 5,
-    flexDirection: "row",
-    borderWidth: 0.8,
-    borderColor: "#c5002F",
-  },
-  buttonStyleHesap: {
-    backgroundColor: "#c5002F",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 5,
-    padding: 6,
-    margin: 5,
-    flexDirection: "row"
-  },
-  buttonColorHesap: {
-    color: 'white',
-    fontWeight: 'bold',
-    fontFamily: 'Bahnschrift',
-    fontSize: 14
-  },
-  buttonStyleMenu: {
-    backgroundColor: "#c5002F",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 5,
-    padding: 15,
-    margin: 5,
-    flexDirection: "row"
-  },
-  buttonColorMenu: {
-    color: 'white',
-    fontWeight: 'bold',
-    fontFamily: 'Bahnschrift',
-    fontSize: 14
-  }
-});
