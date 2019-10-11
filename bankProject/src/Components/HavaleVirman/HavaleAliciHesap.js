@@ -24,7 +24,7 @@ export default class HavaleAliciHesap extends Component {
             </View>
             <View style={styles.buttonContainer}>
               <TextInput
-                style={styles.buttonStyle}
+                style={styles.buttonStyleAbone}
                 placeholder="Örn: 100110"
                 underlineColorAndroid='transparent'
                 placeholderTextColor="gray"

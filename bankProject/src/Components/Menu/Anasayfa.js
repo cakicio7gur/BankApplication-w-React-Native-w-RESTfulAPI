@@ -28,19 +28,30 @@ export default class Anasayfa extends Component {
               <TouchableOpacity
                 style={styles.buttonStyleMenu}
                 onPress={() => { this.props.navigation.navigate('Hesaplarim') }}>
-                <Text style={styles.buttonColorMenu}>[4]</Text>
-                <Text style={styles.buttonColorMenu}>   HESAPLARIM</Text>
+                <Icon name="briefcase" size={16} color="white" backgroundColor="#c5002F">
+                <Text style={styles.buttonColorMenu}>  TÜM HESAPLARIM</Text>
+                </Icon>
               </TouchableOpacity>
             </View>
 
             <View style={styles.buttonContainer}>
               <TouchableOpacity style={styles.buttonStyleMenu}
                 onPress={() => { this.props.navigation.navigate('ParaIslemleri') }}>
-                <Icon name="cogs" size={16} color="white" backgroundColor="#c5002F">
-                  <Text style={styles.buttonColorMenu}>  İŞLEMLERİM </Text>
+                <Icon name="exchange" size={16} color="white" backgroundColor="#c5002F">
+                  <Text style={styles.buttonColorMenu}>  PARA TRANSFERLERİ </Text>
                 </Icon>
               </TouchableOpacity>
             </View>
+
+            <View style={styles.buttonContainer}>
+              <TouchableOpacity style={styles.buttonStyleMenu}
+                onPress={() => { this.props.navigation.navigate('FaturaOdemeKurumSecimi') }}>
+                <Icon name="money" size={16} color="white" backgroundColor="#c5002F">
+                  <Text style={styles.buttonColorMenu}>  ÖDEME İŞLEMLERİ </Text>
+                </Icon>
+              </TouchableOpacity>
+            </View>
+
           </View>
         </ScrollView>
       </View>

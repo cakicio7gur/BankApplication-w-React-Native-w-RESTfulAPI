@@ -24,7 +24,7 @@ export default class HavaleGonderilecekTutar extends Component {
             </View>
             <View style={styles.buttonContainer}>
               <TextInput
-                style={styles.buttonStyle}
+                style={styles.buttonStyleAbone}
                 placeholder="Örn: 1500"
                 underlineColorAndroid='transparent'
                 placeholderTextColor="gray"

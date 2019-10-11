@@ -26,10 +26,10 @@ export default class FaturaOdemeKurumSecimi extends Component {
             </View>
 
             <View style={styles.buttonContainer}>
-              <TouchableOpacity
-                style={styles.buttonStyle}>
+              <TouchableHighlight
+                style={styles.buttonStyleKurum}>
                 <Text style={styles.buttonColor} >TELEFON</Text>
-              </TouchableOpacity>
+              </TouchableHighlight>
             </View>
 
             <View style={styles.buttonContainer}>
@@ -41,21 +41,22 @@ export default class FaturaOdemeKurumSecimi extends Component {
             </View>
 
             <View style={styles.buttonContainer}>
-              <TouchableOpacity
-                style={styles.buttonStyle}>
+              <TouchableHighlight
+                style={styles.buttonStyleKurum}>
                 <Text style={styles.buttonColor} >ELEKTRİK</Text>
-              </TouchableOpacity>
+              </TouchableHighlight>
             </View>
 
             <View style={styles.buttonContainer}>
-              <TouchableOpacity
-                style={styles.buttonStyle}>
+              <TouchableHighlight
+                style={styles.buttonStyleKurum}>
                 <Text style={styles.buttonColor} >DOĞALGAZ</Text>
-              </TouchableOpacity>
+              </TouchableHighlight>
             </View>
 
             <View style={styles.buttonContainer}>
-              <TouchableOpacity style={styles.buttonStyleMenu}>
+              <TouchableOpacity style={styles.buttonStyleMenu}
+              onPress={() => {this.props.navigation.navigate('Anasayfa')}}>
                 <Icon name="home" size={18} color="white" backgroundColor="#c5002F">
                   <Text style={styles.buttonColorMenu}> ANASAYFA </Text>
                 </Icon>

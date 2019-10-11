@@ -101,6 +101,16 @@ export default StyleSheet.create({
       borderWidth: 0.8,
       borderColor: "#c5002F",
     },
+    buttonStyleKurum: {
+      justifyContent: "center",
+      alignItems: "center",
+      borderRadius: 5,
+      padding: 12,
+      margin: 5,
+      flexDirection: "row",
+      borderWidth: 0.8,
+      borderColor: "black",
+    },
     buttonColor: {
       fontFamily: 'Bahnschrift',
     },
@@ -192,16 +202,15 @@ export default StyleSheet.create({
       backgroundColor: "#c5002f",
       justifyContent: "center",
       alignItems: "center",
-      borderRadius: 50,
-      padding: 15,
-      margin: 10,
-      marginTop: 100,
+      borderRadius: 5,
+      padding: 12,
+      margin: 6,
       flexDirection: "row",
       fontFamily:'Bahnschrift'
     },
     buttonText: {
       color: 'white',
-      fontSize: 18,
+      fontSize: 16,
     },    
     detayView: {
     flex: .3,
@@ -246,7 +255,7 @@ export default StyleSheet.create({
       marginTop: 5,
     },
     hesapBilgiContainer: {
-      flex: .18,
+      flex: 17,
       backgroundColor: "white",
       padding: 5,
       margin: 10,
@@ -254,7 +263,6 @@ export default StyleSheet.create({
       borderRadius: 5,
       borderColor: "#c5002f",
       fontFamily: 'Bahnschrift',
-      //height: 100,
     },
     buttonContainerHesaplarim: {
       marginTop: 15,
@@ -341,6 +349,7 @@ export default StyleSheet.create({
       fontFamily: 'Bahnschrift',
     },
     buttonContainerL: {
+      marginTop:100,
       flex: 0.4,
       justifyContent: "center",
     },

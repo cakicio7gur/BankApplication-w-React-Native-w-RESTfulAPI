@@ -20,7 +20,7 @@ export default class ParaIslemleri extends Component {
             <View style={styles.buttonContainer}>
               <TouchableHighlight
                 style={styles.buttonStyleHesap}>
-                <Text style={styles.buttonColorMenu}>PARA İŞLEMLERİ</Text>
+                <Text style={styles.buttonColorMenu}>İŞLEMLER</Text>
               </TouchableHighlight>
             </View>
 
@@ -28,7 +28,9 @@ export default class ParaIslemleri extends Component {
               <TouchableOpacity
                 style={styles.buttonStyle}
                 onPress={() => {this.props.navigation.navigate('HavaleAliciHesap')}}>
-                <Text style={styles.buttonColor} >HAVALE</Text>
+                <Icon name="random" size={16} color="black" backgroundColor="#c5002F">
+                <Text style={styles.buttonColor} >  HAVALE</Text>
+                </Icon>
               </TouchableOpacity>
             </View>
 
@@ -36,20 +38,15 @@ export default class ParaIslemleri extends Component {
               <TouchableOpacity
                 style={styles.buttonStyle}
                 onPress={() => {this.props.navigation.navigate('VirmanAliciHesap')}}>
-                <Text style={styles.buttonColor} >VİRMAN</Text>
+                <Icon name="retweet" size={16} color="black" backgroundColor="#c5002F">
+                <Text style={styles.buttonColor} >  VİRMAN</Text>
+                </Icon>
               </TouchableOpacity>
             </View>
 
             <View style={styles.buttonContainer}>
-              <TouchableOpacity
-                style={styles.buttonStyle}
-                onPress={() => {this.props.navigation.navigate('FaturaOdemeKurumSecimi')}}>
-                <Text style={styles.buttonColor} >FATURA ÖDEME</Text>
-              </TouchableOpacity>
-            </View>
-
-            <View style={styles.buttonContainer}>
-              <TouchableOpacity style={styles.buttonStyleMenu}>
+              <TouchableOpacity style={styles.buttonStyleMenu}
+              onPress={() => {this.props.navigation.navigate('Anasayfa')}}>
                 <Icon name="home" size={18} color="white" backgroundColor="#c5002F">
                   <Text style={styles.buttonColorMenu}> ANASAYFA </Text>
                 </Icon>

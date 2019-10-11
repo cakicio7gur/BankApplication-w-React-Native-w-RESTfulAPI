@@ -292,7 +292,7 @@ const MainNavigator = createStackNavigator({
             headerTintColor: 'white', // header back button color
             headerRight: <Icon name="home" size={25} color="white"
                 style={{ marginRight: 15 }}
-                onPress={() => navigation.navigate("Login")} />,
+                onPress={() => navigation.navigate("Anasayfa")} />,
         }),
     },
     HesapDetaylari: {
@@ -308,7 +308,7 @@ const MainNavigator = createStackNavigator({
             headerTintColor: 'white', // header back button color
             headerRight: <Icon name="home" size={25} color="white"
                 style={{ marginRight: 15 }}
-                onPress={() => navigation.navigate("Login")} />,
+                onPress={() => navigation.navigate("Anasayfa")} />,
         }),
     },
     HesapHareketleri: {
@@ -324,7 +324,7 @@ const MainNavigator = createStackNavigator({
             headerTintColor: 'white', // header back button color
             headerRight: <Icon name="home" size={25} color="white"
                 style={{ marginRight: 15 }}
-                onPress={() => navigation.navigate("Login")} />,
+                onPress={() => navigation.navigate("Anasayfa")} />,
         }),
     },
 });

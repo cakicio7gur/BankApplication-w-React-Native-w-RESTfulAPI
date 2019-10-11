@@ -38,6 +38,9 @@ export default class HesapDetaylari extends React.Component {
                         onPress={() => { this.props.navigation.navigate("HesapHareketleri", {hesapNo: hesapNo}) }}>
                         <Text style={styles.buttonText}>Hesap Hareketleri</Text>
                     </TouchableOpacity>
+                    <TouchableOpacity style={styles.hesapHareketleri}>
+                        <Text style={styles.buttonText}>Hesabı Sil</Text>
+                    </TouchableOpacity>
                 </View>
             </View>
         );

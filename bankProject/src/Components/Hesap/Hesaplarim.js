@@ -1,5 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, Text, View, TouchableHighlight,ScrollView } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import styles from '../styles.js';
 
 export default class Hesaplarim extends React.Component {
@@ -53,9 +54,11 @@ export default class Hesaplarim extends React.Component {
             <View style={styles.container}>
             <ScrollView>
                 <View style={styles.buttonContainerHesaplarim}>
-                    <TouchableHighlight style={styles.buttonStyleHesaplarim}>
-                        <Text style={styles.buttonColorMenu}>HESAPLARIM</Text>
-                    </TouchableHighlight>
+                <TouchableOpacity style={styles.buttonStyleHesaplarim}>
+                <Icon name="plus" size={16} color="white" backgroundColor="#c5002F">
+                <Text style={styles.buttonColorMenu}>  YENİ HESAP AÇ</Text>
+                </Icon>
+                </TouchableOpacity>
                 </View>
                 <View style={styles.hesaplarView}>
                     {hesaplar}
