@@ -10,7 +10,7 @@ namespace CoreLayer.DBHelper
     public class DBContext : DbContext
     {
         public DBContext()
-            : base(@"metadata = res://*/Models.Model1.csdl|res://*/Models.Model1.ssdl|res://*/Models.Model1.msl;provider=System.Data.SqlClient;provider connection string=';data source=DESKTOP-ROO5HV9\SQLEXPRESS;initial catalog=BankDatabase;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot';")
+            : base(@"metadata=res://*/Models.Model1.csdl|res://*/Models.Model1.ssdl|res://*/Models.Model1.msl;provider=System.Data.SqlClient;provider connection string=';data source=tcp:server-bank.database.windows.net,1433;initial catalog=BankDatabase;Persist Security Info=False;user id=adminBank;password=bank+App;MultipleActiveResultSets=True;Connection Timeout=30;App=EntityFramework&quot';")
         {
 
         }
