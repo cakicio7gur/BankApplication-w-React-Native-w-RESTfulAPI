@@ -122,5 +122,22 @@ namespace BusinessLayer.BLLs
                 }
             }
         }
+
+        public decimal? ToplamBakiye(int id)
+        {
+            using (HesapRepository hesapRepo = new HesapRepository())
+            {
+                try
+                {
+                    var toplamBakiye = hesapRepo.ToplamBakiye(id);
+                    return toplamBakiye;
+                }
+                catch
+                {
+                    throw;
+                }
+            }
+
+        }
     }
 }

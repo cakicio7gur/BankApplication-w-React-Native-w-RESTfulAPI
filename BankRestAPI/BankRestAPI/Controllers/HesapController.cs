@@ -46,12 +46,19 @@ namespace BankRestAPI.Controllers
             hesapBusiness.Update(model);
             return Ok();
         }
-
+        [HttpDelete]
         public IHttpActionResult Delete(int id)
         {
             HesapBLL hesapBusiness = new HesapBLL();
             hesapBusiness.Delete(id);
             return Ok();
+        }
+        [HttpGet]
+        public IHttpActionResult GetToplamBakiye(int id)
+        {
+            HesapBLL hesapBusiness = new HesapBLL();
+            var toplamBakiye = hesapBusiness.ToplamBakiye(id);
+            return Ok(toplamBakiye);
         }
     }
 }
