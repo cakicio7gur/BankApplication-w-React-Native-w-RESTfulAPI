@@ -2,85 +2,39 @@ import React from 'react';
 import { TouchableOpacity, Text, View, ScrollView, TouchableHighlight, Alert, Button } from 'react-native';
 import Modal from 'react-native-modalbox'
 import moment from 'moment';
-
 export default class HesapHareketleri extends React.Component {
-
     constructor(props) {
         super(props);
         this.state = {
-            ParaTransferleri: [
-                {
-                    id: 1,
-                    tarih: moment('2019-09-22'),
-                    gonderenHesapNo: 100110,
-                    aliciHesapNo: 100210,
-                    transferTuru: 'Havale',
-                    tutar: 900.00,
-                },
-                {
-                    id: 2,
-                    tarih: moment('2019-07-28'),
-                    gonderenHesapNo: 100110,
-                    aliciHesapNo: 100210,
-                    transferTuru: 'Havale',
-                    tutar: 90.00,
-                },
-                {
-                    id: 3,
-                    tarih: moment('2019-06-13'),
-                    gonderenHesapNo: 100110,
-                    aliciHesapNo: 100111,
-                    transferTuru: 'Virman',
-                    tutar: 100.50,
-                },
-                {
-                    id: 4,
-                    tarih: moment('2019-08-01'),
-                    gonderenHesapNo: 100210,
-                    aliciHesapNo: 100110,
-                    transferTuru: 'Havale',
-                    tutar: 900.00,
-                },
-                {
-                    id: 5,
-                    tarih: moment('2019-08-01'),
-                    gonderenHesapNo: 100210,
-                    aliciHesapNo: 100110,
-                    transferTuru: 'Havale',
-                    tutar: 900.00,
-                },
-                {
-                    id: 6,
-                    tarih: moment('2019-08-01'),
-                    gonderenHesapNo: 100210,
-                    aliciHesapNo: 100110,
-                    transferTuru: 'Havale',
-                    tutar: 900.00,
-                },
-            ],
-            modalVisible: false,
+            ParaTransferleri: [],
+            modalVisible: false
         }
     }
-
-    render() {
-
-        moment.locale('tr');
-
+    componentDidMount() {
         const { hesapNo } = this.props.navigation.state.params;
-
+        fetch('http://bankrestapi.azurewebsites.net/api/ParaTransferi/GetByHesapNo?hesapNo='+hesapNo)
+          .then(res => res.json())
+          .then(response => {
+            this.setState({ParaTransferleri: response});      
+          })
+          .catch(err => alert(err));
+    }
+    render() {
+        moment.locale('tr');
+        const { hesapNo } = this.props.navigation.state.params;
         let paraTransferleri = this.state.ParaTransferleri.map(transfer => {
             let tutar = 0;
             if (transfer.gonderenHesapNo == hesapNo) {
-                tutar = -Math.abs(transfer.tutar); //kişi gönderici ise eksi olarak göster.
+                tutar = -Math.abs(transfer.islemTutari); //kişi gönderici ise eksi olarak göster.
             }
-            else tutar = Math.abs(transfer.tutar);
+            else tutar = Math.abs(transfer.islemTutari);
 
             let gonderenMusteriNo = transfer.gonderenHesapNo.toString().substring(0, 4);
             let aliciMusteriNo = transfer.aliciHesapNo.toString().substring(0, 4);
             let gonderenEkNo = transfer.gonderenHesapNo.toString().substring(4, 6);
             let aliciEkNo = transfer.aliciHesapNo.toString().substring(4, 6);
             return (
-                <View style={{ flexDirection: 'row' }} key={transfer.id}>
+                <View style={{ flexDirection: 'row' }} key={transfer.ptID}>
                     <TouchableOpacity style={styles.tarih} activeOpacity={1}>
 
                         <View style={{ flexDirection: 'column', justifyContent: 'space-evenly', alignItems: 'center' }}>
@@ -98,7 +52,7 @@ export default class HesapHareketleri extends React.Component {
                             <Text style={[{ fontWeight: 'bold', fontSize: 17,fontFamily:'Bahnschrift', margin: 5 }, transfer.gonderenHesapNo != hesapNo ? styles.gelenTutar : styles.gidenTutar]}>{parseFloat(tutar).toFixed(2)} TL</Text>
                         </View>
                         <View style={{ justifyContent: 'space-evenly' }}>
-                            <Text style={{ fontSize: 15, fontStyle: 'italic',fontFamily:'Bahnschrift', fontWeight: 'bold', marginLeft: 20 }}>{transfer.transferTuru}</Text>
+                            <Text style={{ fontSize: 15, fontStyle: 'italic',fontFamily:'Bahnschrift', fontWeight: 'bold', marginLeft: 20 }}>{transfer.tur}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -108,7 +62,8 @@ export default class HesapHareketleri extends React.Component {
             <View style={styles.container}>
                 <ScrollView>
                     {paraTransferleri}
-                    <Modal
+                </ScrollView>
+                <Modal
                         style={styles.modal}
                         position={'center'}
                         ref={'modal3'}
@@ -150,7 +105,6 @@ export default class HesapHareketleri extends React.Component {
                         </View>
 
                     </Modal>
-                </ScrollView>
             </View>
         )
     }
@@ -159,7 +113,7 @@ export default class HesapHareketleri extends React.Component {
 const styles = {
     container: {
         flex: 1,
-        backgroundColor: '#f2f2f2'
+        backgroundColor: '#f8f8f8'
     },
     hareketBilgi: {
         flex: .8,
@@ -225,8 +179,8 @@ const styles = {
         borderRadius: 5,
         borderWidth: .4,
         borderColor: '#c5002f',
-        marginTop: 50,
-        padding: 8,
+        marginTop: 45,
+        padding: 4,
         flexDirection: "row",
     },
     buttonContainer: {
@@ -235,7 +189,7 @@ const styles = {
     },
     buttonText: {
         color: '#c5002f',
-        fontSize: 18,
+        fontSize: 14,
         fontFamily:'Bahnschrift'
     },
 }

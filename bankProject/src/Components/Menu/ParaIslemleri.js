@@ -10,6 +10,7 @@ export default class ParaIslemleri extends Component {
   }
 
   render() {
+    const { musteriNo } = this.props.navigation.state.params;
     return (
       <View style={styles.container}>
         <ScrollView>
@@ -27,9 +28,9 @@ export default class ParaIslemleri extends Component {
             <View style={styles.buttonContainer}>
               <TouchableOpacity
                 style={styles.buttonStyle}
-                onPress={() => {this.props.navigation.navigate('HavaleAliciHesap')}}>
+                onPress={() => {this.props.navigation.navigate('HavaleAliciHesap',{musteriNo: musteriNo,islemTuruID:1})}}>
                 <Icon name="random" size={16} color="black" backgroundColor="#c5002F">
-                <Text style={styles.buttonColor} >  HAVALE</Text>
+                <Text style={styles.buttonColor} >  HAVALE </Text>
                 </Icon>
               </TouchableOpacity>
             </View>
@@ -37,22 +38,12 @@ export default class ParaIslemleri extends Component {
             <View style={styles.buttonContainer}>
               <TouchableOpacity
                 style={styles.buttonStyle}
-                onPress={() => {this.props.navigation.navigate('VirmanAliciHesap')}}>
+                onPress={() => {this.props.navigation.navigate('VirmanAliciHesap',{musteriNo: musteriNo,islemTuruID:2})}}>
                 <Icon name="retweet" size={16} color="black" backgroundColor="#c5002F">
-                <Text style={styles.buttonColor} >  VİRMAN</Text>
+                <Text style={styles.buttonColor} >  VİRMAN </Text>
                 </Icon>
               </TouchableOpacity>
             </View>
-
-            <View style={styles.buttonContainer}>
-              <TouchableOpacity style={styles.buttonStyleMenu}
-              onPress={() => {this.props.navigation.navigate('Anasayfa')}}>
-                <Icon name="home" size={18} color="white" backgroundColor="#c5002F">
-                  <Text style={styles.buttonColorMenu}> ANASAYFA </Text>
-                </Icon>
-              </TouchableOpacity>
-            </View>
-
           </View>
         </ScrollView>
       </View>

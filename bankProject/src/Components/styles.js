@@ -4,6 +4,10 @@ export default StyleSheet.create({
       flex: 1,
       backgroundColor: "#F8F8F8",
     },
+    containerHH:{
+      flex: 1,
+      backgroundColor: "#F2F2F2",
+    },
     header: {
       flex: 0.3,
       backgroundColor: "#F8F8F8",
@@ -22,11 +26,6 @@ export default StyleSheet.create({
       alignItems: 'center',
     },
     avatar: {
-      width: 120,
-      height: 120,
-      borderRadius: 60,
-      borderWidth: 15,
-      borderColor: "#c5002F",
       marginBottom: 10,
     },
     avatarKP: {
@@ -69,11 +68,8 @@ export default StyleSheet.create({
       alignItems: 'center',
     },
     info: {
-      fontWeight: 'bold',
       color: 'black',
-      position: 'absolute', // child
-      bottom: 30, // position where you want
-      justifyContent: 'center',
+      justifyContent: 'space-between',
       textAlign: 'center',
       fontFamily: 'Bahnschrift',
       fontSize: 16
@@ -168,6 +164,11 @@ export default StyleSheet.create({
       fontSize: 16,
       fontFamily: 'Bahnschrift',
     },
+    hesapNoTop: {
+      fontWeight: "bold",
+      fontSize: 24,
+      fontFamily: 'Bahnschrift',
+    },
     hesapText: {
       marginTop: 5,
       fontSize: 14,
@@ -208,6 +209,59 @@ export default StyleSheet.create({
       flexDirection: "row",
       fontFamily:'Bahnschrift'
     },
+    buttonTextHesapHareket: {
+      color: '#c5002f',
+      fontSize: 18,
+      fontFamily:'Bahnschrift'
+    },
+    cizgi: {
+      backgroundColor: 'black',
+      width: 1,
+      height: '100%',
+      opacity: .3,
+    },
+    gelenTutar: {
+      borderColor: 'green',
+      color: 'green',
+    },
+    gidenTutar: {
+      borderColor: 'red',
+      color: '#ff0000',
+    },
+    modal: {
+      height: 250,
+      width: 300,
+      borderRadius: 5,
+      borderColor: '#c5002f',
+      borderWidth: 1.5,
+      padding: 15
+    },
+    islemDetay: {
+      fontSize: 20,
+      fontWeight: 'bold',
+      fontFamily:'Bahnschrift'
+    },
+    textInfo: {
+      fontSize: 15,
+      fontWeight: 'bold',
+      fontFamily:'Bahnschrift'
+    },
+    textView: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      marginTop: 5
+    },
+    geriButton: {
+      backgroundColor: "white",
+      justifyContent: "center",
+      alignItems: "center",
+      borderRadius: 5,
+      borderWidth: .4,
+      borderColor: '#c5002f',
+      marginTop: 50,
+      padding: 8,
+      flexDirection: "row",
+    },
     buttonText: {
       color: 'white',
       fontSize: 16,
@@ -224,7 +278,7 @@ export default StyleSheet.create({
       fontFamily:'Bahnschrift'
     },
     adSoyad: {
-      fontSize: 16,
+      fontSize: 24,
       color: 'black',
       fontWeight: 'bold',
       marginBottom: 20,
@@ -334,11 +388,14 @@ export default StyleSheet.create({
       height: null
     },
     styleLogo: {
-      flex: 1,
+      flex: 2,
     },
     inputContainerL: {
       flex: 0.6,
       justifyContent: "space-evenly",
+    },
+    inputContainerLogin: {
+      flex: 0.6,
     },
     inputStyleL: {
       backgroundColor: "#F8F8F8",
@@ -347,6 +404,15 @@ export default StyleSheet.create({
       borderBottomWidth: 2,
       borderColor: "#c5002F",
       fontFamily: 'Bahnschrift',
+    },
+    buttonContainerHesapHareketleri:{
+      marginTop:260,
+      flex: 0.4,
+      justifyContent: "center",
+    },
+    buttonContainerHesapHareket: {
+      flex: 0.4,
+      justifyContent: "center",
     },
     buttonContainerL: {
       marginTop:100,
@@ -379,5 +445,25 @@ export default StyleSheet.create({
     registerColorKP: {
       fontFamily: 'Bahnschrift',
       marginTop:10,
+    },
+    hareketBilgi: {
+      flex: .8,
+      backgroundColor: "white",
+      padding: 2,
+      margin: 7,
+      borderWidth: 0.7,
+      borderRadius: 5,
+      flexDirection: 'row',
+      justifyContent: 'space-around',
+    },
+    tarih: {
+      flex: .2,
+      backgroundColor: "white",
+      padding: 2,
+      margin: 7,
+      borderRadius: 5,
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-evenly',
     },
   });

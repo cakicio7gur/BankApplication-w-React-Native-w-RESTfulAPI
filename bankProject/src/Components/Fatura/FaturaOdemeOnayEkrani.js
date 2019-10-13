@@ -20,53 +20,46 @@ export default class FaturaOdemeOnayEkrani extends Component {
           <View style={styles.body}>
 
             <View style={styles.buttonContainer}>
-              <TouchableHighlight
-                style={styles.buttonStyleHesap}>
+              <View style={styles.buttonStyleHesap}>
                 <Text style={styles.buttonColorMenu}>İŞLEM DETAYLARI</Text>
-              </TouchableHighlight>
+              </View>
             </View>
 
             <Text style={styles.infoColor} >KURUM BİLGİLERİ</Text>
             <View style={styles.buttonContainer}>
-              <TouchableOpacity
-                style={styles.buttonStyleOnayEkrani}>
+              <View style={styles.buttonStyleOnayEkrani}>
                 <Text style={styles.buttonColor} >ASKİ</Text>
-              </TouchableOpacity>
+              </View>
             </View>
 
             <Text style={styles.infoColor}>FATURA BİLGİLERİ</Text>
             <View style={styles.buttonContainer}>
-              <TouchableOpacity
-                style={styles.buttonStyleOnayEkrani}>
+              <View style={styles.buttonStyleOnayEkrani}>
                 <Text style={styles.buttonColor}>
                   Son Ödeme Tarihi: 22/03/2019{"\n"}{"\n"}
                   Ad Soyad: Öz*** Ça**** {"\n"}{"\n"}
-                  Abone No: 678965</Text></TouchableOpacity>
+                  Abone No: 678965</Text></View>
             </View>
 
             <Text style={styles.infoColor} >TUTAR</Text>
             <View style={styles.buttonContainer}>
-              <TouchableOpacity
-                style={styles.buttonStyleOnayEkrani}>
+              <View style={styles.buttonStyleOnayEkrani}>
                 <Text style={styles.buttonColor} > 98,60 TL </Text>
-              </TouchableOpacity>
+              </View>
             </View>
 
             <Text style={styles.infoColor} >İŞLEM TARİHİ</Text>
             <View style={styles.buttonContainer}>
-              <TouchableOpacity
-                style={styles.buttonStyleOnayEkrani}>
+              <View style={styles.buttonStyleOnayEkrani}>
                 <Text style={styles.buttonColor} > 22/03/1996 </Text>
-              </TouchableOpacity>
+              </View>
             </View>
-
-
+            
             <Text style={styles.infoColor} >ÖDENECEK HESAP</Text>
             <View style={styles.buttonContainer}>
-              <TouchableOpacity
-                style={styles.buttonStyleOnayEkrani}>
+              <View style={styles.buttonStyleOnayEkrani}>
                 <Text style={styles.buttonColor} >Özgür ÇAKICI - 100110 </Text>
-              </TouchableOpacity>
+              </View>
             </View>
 
             <View style={styles.buttonContainer}>

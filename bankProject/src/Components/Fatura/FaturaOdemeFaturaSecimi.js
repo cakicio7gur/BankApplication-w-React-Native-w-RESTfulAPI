@@ -15,15 +15,16 @@ export default class FaturaOdemeFaturaSecimi extends Component {
         <ScrollView>
           <View style={styles.body}>
             <View style={styles.buttonContainer}>
-              <TouchableHighlight
+              <View
                 style={styles.buttonStyleHesap}>
                 <Text style={styles.buttonColorMenu}>FATURA SEÇİMİ</Text>
-              </TouchableHighlight>
+              </View>
             </View>
 
             <View style={styles.buttonContainer}>
               <TouchableOpacity
-                style={styles.buttonStyleFaturaSecimi}>
+                style={styles.buttonStyleFaturaSecimi}
+                onPress={()=>{this.props.navigation.navigate('FaturaOdemeHesapSecimi')}}>
                 <Text style={styles.buttonColor}>
                   Son Ödeme Tarihi: 22/03/2019{"\n"}{"\n"}
                   Ad Soyad: Öz*** Ça**** {"\n"}{"\n"}
@@ -32,63 +33,6 @@ export default class FaturaOdemeFaturaSecimi extends Component {
               </TouchableOpacity>
             </View>
 
-            <View style={styles.buttonContainer}>
-              <TouchableOpacity
-                style={styles.buttonStyleFaturaSecimi}>
-                <Text style={styles.buttonColor}>
-                  Son Ödeme Tarihi: 22/03/2019{"\n"}{"\n"}
-                  Ad Soyad: Öz*** Ça**** {"\n"}{"\n"}
-                  Abone No: 678965</Text>
-                <Text style={{ fontWeight: "bold" }}>{"\n"}{"\n"}980,60 TL </Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.buttonContainer}>
-              <TouchableOpacity
-                style={styles.buttonStyleFaturaSecimi}>
-                <Text style={styles.buttonColor}>
-                  Son Ödeme Tarihi: 22/03/2019{"\n"}{"\n"}
-                  Ad Soyad: Öz*** Ça**** {"\n"}{"\n"}
-                  Abone No: 678965</Text>
-                <Text style={{ fontWeight: "bold" }}>{"\n"}{"\n"}980,60 TL </Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.buttonContainer}>
-              <TouchableOpacity
-                style={styles.buttonStyleFaturaSecimi}>
-                <Text style={styles.buttonColor}>
-                  Son Ödeme Tarihi: 22/03/2019{"\n"}{"\n"}
-                  Ad Soyad: Öz*** Ça**** {"\n"}{"\n"}
-                  Abone No: 678965</Text>
-                <Text style={{ fontWeight: "bold" }}>{"\n"}{"\n"}980,60 TL </Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.buttonContainer}>
-              <TouchableOpacity
-                style={styles.buttonStyleFaturaSecimi}>
-                <Text style={styles.buttonColor}>
-                  Son Ödeme Tarihi: 22/03/2019{"\n"}{"\n"}
-                  Ad Soyad: Öz*** Ça**** {"\n"}{"\n"}
-                  Abone No: 678965</Text>
-                <Text style={{ fontWeight: "bold" }}>{"\n"}{"\n"}980,60 TL </Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.buttonContainer}>
-              <TouchableOpacity
-                style={styles.buttonStyleFaturaSecimi}>
-                <Text style={styles.buttonColor}>
-                  Son Ödeme Tarihi: 22/03/2019{"\n"}{"\n"}
-                  Ad Soyad: Öz*** Ça**** {"\n"}{"\n"}
-                  Abone No: 678965</Text>
-                <Text style={{ fontWeight: "bold" }}>{"\n"}{"\n"}980,60 TL </Text>
-              </TouchableOpacity>
-            </View>
-
-            <View style={styles.buttonContainer}>
-              <TouchableOpacity style={styles.buttonStyleMenu}
-                onPress={() => { this.props.navigation.navigate('FaturaOdemeHesapSecimi')}}>
-                <Text style={styles.buttonColorMenu}> DEVAM </Text>
-              </TouchableOpacity>
-            </View>
           </View>
         </ScrollView>
       </View>

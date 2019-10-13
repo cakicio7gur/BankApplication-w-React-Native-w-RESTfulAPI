@@ -11,6 +11,7 @@ export default class FaturaOdemeKurumSecimi extends Component {
   }
 
   render() {
+    const { musteriNo } = this.props.navigation.state.params;
     return (
       <View style={styles.container}>
         <ScrollView>
@@ -19,17 +20,17 @@ export default class FaturaOdemeKurumSecimi extends Component {
           <View style={styles.body}>
 
             <View style={styles.buttonContainer}>
-              <TouchableHighlight
+              <View
                 style={styles.buttonStyleHesap}>
                 <Text style={styles.buttonColorMenu}>KURUM SEÇİMİ</Text>
-              </TouchableHighlight>
+              </View>
             </View>
 
             <View style={styles.buttonContainer}>
-              <TouchableHighlight
+              <View
                 style={styles.buttonStyleKurum}>
                 <Text style={styles.buttonColor} >TELEFON</Text>
-              </TouchableHighlight>
+              </View>
             </View>
 
             <View style={styles.buttonContainer}>
@@ -41,28 +42,18 @@ export default class FaturaOdemeKurumSecimi extends Component {
             </View>
 
             <View style={styles.buttonContainer}>
-              <TouchableHighlight
+              <View
                 style={styles.buttonStyleKurum}>
                 <Text style={styles.buttonColor} >ELEKTRİK</Text>
-              </TouchableHighlight>
+              </View>
             </View>
 
             <View style={styles.buttonContainer}>
-              <TouchableHighlight
+              <View
                 style={styles.buttonStyleKurum}>
                 <Text style={styles.buttonColor} >DOĞALGAZ</Text>
-              </TouchableHighlight>
+              </View>
             </View>
-
-            <View style={styles.buttonContainer}>
-              <TouchableOpacity style={styles.buttonStyleMenu}
-              onPress={() => {this.props.navigation.navigate('Anasayfa')}}>
-                <Icon name="home" size={18} color="white" backgroundColor="#c5002F">
-                  <Text style={styles.buttonColorMenu}> ANASAYFA </Text>
-                </Icon>
-              </TouchableOpacity>
-            </View>
-
           </View>
         </ScrollView>
       </View>

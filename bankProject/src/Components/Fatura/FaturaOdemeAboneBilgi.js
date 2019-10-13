@@ -17,10 +17,10 @@ export default class HavaleAliciHesap extends Component {
           <View style={styles.body}>
 
             <View style={styles.buttonContainer}>
-              <TouchableHighlight
+              <View
                 style={styles.buttonStyleHesap}>
                 <Text style={styles.buttonColorMenu}>ABONE BİLGİLERİ</Text>
-              </TouchableHighlight>
+              </View>
             </View>
             <View style={styles.buttonContainer}>
               <TextInput

@@ -8,16 +8,16 @@ export default class Login extends React.Component {
     this.state = {
       tckn:'',
       password:'',
+      validatePassword:false,
+      validateTCKN:false
     }
   }
   validateTCKN = (text) => {
-    this.setState({
-      tckn: text.replace(/[^0-9]/g, '')
-    });
+    this.setState({tckn:text.replace(/[^0-9]/g, '')});
     if(text != '')
-      this.setState({validatePassword: true})
+      this.setState({validateTCKN: true})
     else
-      this.setState({validatePassword: false})
+      this.setState({validateTCKN: false})
   }
   validatePassword = (text) => {  
     if(text != '')
@@ -57,7 +57,7 @@ export default class Login extends React.Component {
         </View>
 
         <View style={styles.bosluk}></View>
-        <View style={styles.inputContainerL}>
+        <View style={styles.inputContainerLogin}>
           <TextInput
             placeholder="TCKN"
             underlineColorAndroid='transparent'
@@ -78,12 +78,13 @@ export default class Login extends React.Component {
             maxLength={16}
             onChangeText={(text) => this.validatePassword(text)} 
           />
-
         </View>
+
         <View style={styles.bosluk}></View>
+
         <View style={styles.buttonContainerL}>
           <TouchableOpacity style={styles.buttonStyleKK}
-            onPress={() => { this.props.navigation.navigate('Anasayfa') }}>
+            onPress={()=> {this.GirisYap()}}>
             <Text style={styles.buttonColorKK} > Giriş Yap </Text>
           </TouchableOpacity>
         </View>

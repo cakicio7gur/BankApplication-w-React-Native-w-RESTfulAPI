@@ -1,63 +1,88 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, TouchableHighlight, ScrollView, TextInput, Alert } from 'react-native';
+import {Text, View, TouchableOpacity, TouchableHighlight, ScrollView, TextInput, Alert } from 'react-native';
 import styles from '../styles.js';
+import moment from 'moment';
+
 export default class HavaleOnayEkrani extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      aciklama:"",
+      validateAciklama:false
     };
   }
-
-  Onayla = () => {
-    Alert.alert(
-      "İşleminiz Tamamlanmıştır!", 
-      "Para transfer işleminiz başarılı bir şekilde tamamlanmıştır!",
-      [{text: 'OK', onPress:() => this.props.navigation.navigate("Anasayfa")}])
+  IslemYap = () =>{
+    const { musteriNo,aliciHesap,gonderenHesap,gonderilecekTutar,islemTuruID,islemTarihi } = this.props.navigation.state.params;
+    let ParaTransferi = {
+      aliciHesapNo: aliciHesap.hesapNo,
+      gonderenHesapNo: gonderenHesap.hesapNo,
+      islemTutari: gonderilecekTutar,
+      aciklama: this.state.aciklama,
+      islemTarihi:islemTarihi,
+      islemTuruID: islemTuruID
+    }
+      fetch("http://bankrestapi.azurewebsites.net/api/ParaTransferi/Add", {
+      method: 'POST',
+      body: JSON.stringify(ParaTransferi),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      }})
+      .then(() => 
+          Alert.alert(
+              "İşleminiz Tamamlanmıştır!", 
+              "Para transfer işleminiz başarılı bir şekilde tamamlanmıştır!",
+              [{text: 'OK', onPress:() => this.props.navigation.navigate('Anasayfa')}]
+          )
+      ) 
+    .catch(err=>alert("Hata!", "Para transfer işlemi sırasında bir hata oluştu !\nLütfen tekrar deneyin!"))
   }
-
+  validateAciklama = (text) => {
+    if(text != '')
+      this.setState({validateAciklama: true,aciklama:text})
+    else
+      this.setState({validateAciklama: false})
+  }
   render() {
+    const { musteriNo,aliciHesap,gonderenHesap,gonderilecekTutar,islemTarihi } = this.props.navigation.state.params;
+
     return (
       <View style={styles.container,{marginTop:15}}>
         <ScrollView>
           <View style={styles.body}>
 
             <View style={styles.buttonContainer}>
-              <TouchableHighlight
-                style={styles.buttonStyleHesap}>
+              <View style={styles.buttonStyleHesap}>
                 <Text style={styles.buttonColorMenu}>İŞLEM DETAYLARI</Text>
-              </TouchableHighlight>
+              </View>
             </View>
 
             <Text style={styles.infoColor} >GÖNDEREN HESAP</Text>
             <View style={styles.buttonContainer}>
-              <TouchableOpacity
-                style={styles.buttonStyle}>
-                <Text style={styles.buttonColor} >Özgür ÇAKICI - 100110 </Text>
-              </TouchableOpacity>
+              <View style={styles.buttonStyle}>
+                <Text style={styles.buttonColor} >{gonderenHesap.ad} {gonderenHesap.soyad} - {gonderenHesap.hesapNo} </Text>
+              </View>
             </View>
 
             <Text style={styles.infoColor}>ALICI HESAP</Text>
             <View style={styles.buttonContainer}>
-              <TouchableOpacity
-                style={styles.buttonStyle}>
-                <Text style={styles.buttonColor} >Hacı Süleyman - 100210 </Text>
-              </TouchableOpacity>
+              <View style={styles.buttonStyle}>
+                <Text style={styles.buttonColor} >{aliciHesap.ad} {aliciHesap.soyad} - {aliciHesap.hesapNo} </Text>
+              </View>
             </View>
 
             <Text style={styles.infoColor} >TUTAR</Text>
             <View style={styles.buttonContainer}>
-              <TouchableOpacity
-                style={styles.buttonStyle}>
-                <Text style={styles.buttonColor} > 100 TL </Text>
-              </TouchableOpacity>
+              <View style={styles.buttonStyle}>
+                <Text style={styles.buttonColor} > {gonderilecekTutar} TL </Text>
+              </View>
             </View>
 
             <Text style={styles.infoColor} >İŞLEM TARİHİ</Text>
             <View style={styles.buttonContainer}>
-              <TouchableOpacity
-                style={styles.buttonStyle}>
-                <Text style={styles.buttonColor} > 16/08/2019 </Text>
-              </TouchableOpacity>
+              <View style={styles.buttonStyle}>
+                <Text style={styles.buttonColor} > {moment(islemTarihi).format("DD.MM.YYYY - HH:mm")} </Text>
+              </View>
             </View>
 
 
@@ -65,16 +90,17 @@ export default class HavaleOnayEkrani extends Component {
             <View style={styles.buttonContainer}>
               <TextInput
                 style={styles.buttonStyle}
-                placeholder="Ben Okula Getmeyemi"
-                placeholderTextColor="black"
+                placeholder="Bir açıklama ekle..."
+                placeholderTextColor="gray"
                 fontFamily="Bahnschrift"
-                maxLength={11}>
+                maxLength={70}
+                onChangeText={(text) => this.validateAciklama(text)}>
               </TextInput>
             </View>
 
             <View style={styles.buttonContainer}>
               <TouchableOpacity style={styles.buttonStyleMenu}
-                onPress={() => { this.Onayla() }}>
+                onPress={() => { this.IslemYap() }}>
                 <Text style={styles.buttonColorMenu}> ONAYLA </Text>
               </TouchableOpacity>
             </View>

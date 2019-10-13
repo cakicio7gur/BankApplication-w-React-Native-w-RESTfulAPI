@@ -15,47 +15,19 @@ export default class FaturaOdemeHesapSecimi extends Component {
         <ScrollView>
           <View style={styles.body}>
             <View style={styles.buttonContainer}>
-              <TouchableHighlight
+              <View
                 style={styles.buttonStyleHesap}>
                 <Text style={styles.buttonColorMenu}>HESAP SEÇİMİ</Text>
-              </TouchableHighlight>
+              </View>
             </View>
+
             <View style={styles.contContainer}>
               <TouchableOpacity 
-              style={styles.buttonContainer}>
+              style={styles.buttonContainer}
+              onPress={() => { this.props.navigation.navigate('FaturaOdemeOnayEkrani')}}>
                     <Text style={styles.hesapNo}> 1001 - 10 </Text>
                     <Text style={styles.hesapText}> Bakiye: 2050 TL</Text>
                     <Text style={styles.hesapText}> Kullanılabilir Bakiye: 2050 TL</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.contContainer}>
-              <TouchableOpacity 
-              style={styles.buttonContainer}>
-                    <Text style={styles.hesapNo}> 1001 - 10 </Text>
-                    <Text style={styles.hesapText}> Bakiye: 2050 TL</Text>
-                    <Text style={styles.hesapText}> Kullanılabilir Bakiye: 2050 TL</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.contContainer}>
-              <TouchableOpacity 
-              style={styles.buttonContainer}>
-                    <Text style={styles.hesapNo}> 1001 - 10 </Text>
-                    <Text style={styles.hesapText}> Bakiye: 2050 TL</Text>
-                    <Text style={styles.hesapText}> Kullanılabilir Bakiye: 2050 TL</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.contContainer}>
-              <TouchableOpacity 
-              style={styles.buttonContainer}>
-                    <Text style={styles.hesapNo}> 1001 - 10 </Text>
-                    <Text style={styles.hesapText}> Bakiye: 2050 TL</Text>
-                    <Text style={styles.hesapText}> Kullanılabilir Bakiye: 2050 TL</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.buttonContainer}>
-              <TouchableOpacity style={styles.buttonStyleMenu}
-                onPress={() => { this.props.navigation.navigate('FaturaOdemeOnayEkrani')}}>
-                <Text style={styles.buttonColorMenu}> DEVAM </Text>
               </TouchableOpacity>
             </View>
 

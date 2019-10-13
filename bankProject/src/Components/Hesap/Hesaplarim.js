@@ -1,6 +1,7 @@
 import React from 'react';
-import { TouchableOpacity, Text, View, TouchableHighlight,ScrollView } from 'react-native';
+import { TouchableOpacity, Text, View, ScrollView, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import moment from 'moment';
 import styles from '../styles.js';
 
 export default class Hesaplarim extends React.Component {
@@ -8,33 +9,46 @@ export default class Hesaplarim extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            Hesaplar: [
-                {   //Bu nesne veritabanından gelecek
-                    hesapNo: 100110,
-                    musteriNo: 1001,
-                    ekNo: 10,
-                    bakiye: 1000,
-                    acilisTarihi: "2019-05-13",
-                    acilisPlatformu: "Mobil"
-                },
-                {
-                    hesapNo: 100111,
-                    musteriNo: 1001,
-                    ekNo: 11,
-                    bakiye: 100,
-                    acilisTarihi: "2019-02-13",
-                    acilisPlatformu: "Web"
-                },
-                {
-                    hesapNo: 100112,
-                    musteriNo: 1001,
-                    ekNo: 12,
-                    bakiye: 500,
-                    acilisTarihi: "2019-02-13",
-                    acilisPlatformu: "Web"
-                },
-            ],
+            Hesaplar: [],
         }
+    }
+    hesapGetir = () => {
+        const { musteriNo } = this.props.navigation.state.params;
+        fetch('http://bankrestapi.azurewebsites.net/api/Hesap/GetByMusteriNo?musteriNo='+musteriNo)
+            .then(res => res.json())
+            .then(response => {
+                this.setState({ Hesaplar: response });
+            })
+            .catch(err => alert(err));
+    }
+    componentDidMount() {
+        this.hesapGetir();
+    }
+    hesapOlustur = () => {
+        var acilisTarihi = moment().format();
+        const { musteriNo } = this.props.navigation.state.params;
+        let Hesap = {
+            bakiye: 0,
+            hesapAcilisTarihi: acilisTarihi,
+            musteriNo: musteriNo,
+            acilisPlatformID: 2,
+        }
+        fetch("http://bankrestapi.azurewebsites.net/api/Hesap/Add", {
+            method: 'POST',
+            body: JSON.stringify(Hesap),
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            }
+        })
+            .then(() =>
+                Alert.alert(
+                    "Hesap Oluşturuldu!",
+                    "Hesap oluşturma işleminiz başarılı bir şekilde tamamlanmıştır!",
+                    [{ text: 'OK' ,onPress:() => this.hesapGetir()}]
+                )
+            )
+            .catch(err => Alert.alert("Hata!", "Hesap oluşturma işlemi sırasında bir hata oluştu !\nLütfen tekrar deneyin!"))
     }
     render() {
 
@@ -52,18 +66,19 @@ export default class Hesaplarim extends React.Component {
         })
         return (
             <View style={styles.container}>
-            <ScrollView>
-                <View style={styles.buttonContainerHesaplarim}>
-                <TouchableOpacity style={styles.buttonStyleHesaplarim}>
-                <Icon name="plus" size={16} color="white" backgroundColor="#c5002F">
-                <Text style={styles.buttonColorMenu}>  YENİ HESAP AÇ</Text>
-                </Icon>
-                </TouchableOpacity>
-                </View>
-                <View style={styles.hesaplarView}>
-                    {hesaplar}
-                </View>
-            </ScrollView>
+                <ScrollView>
+                    <View style={styles.buttonContainerHesaplarim}>
+                        <TouchableOpacity style={styles.buttonStyleHesaplarim}>
+                            <Icon name="plus" size={16} color="white" backgroundColor="#c5002F">
+                                <Text style={styles.buttonColorMenu}
+                                    onPress={() => { this.hesapOlustur() }}>  YENİ HESAP AÇ</Text>
+                            </Icon>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={styles.hesaplarView}>
+                        {hesaplar}
+                    </View>
+                </ScrollView>
             </View>
         );
     }

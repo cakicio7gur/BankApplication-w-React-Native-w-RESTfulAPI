@@ -25,6 +25,14 @@ import FaturaOdemeFaturaSecimi from './Components/Fatura/FaturaOdemeFaturaSecimi
 import FaturaOdemeHesapSecimi from './Components/Fatura/FaturaOdemeHesapSecimi';
 import FaturaOdemeOnayEkrani from './Components/Fatura/FaturaOdemeOnayEkrani';
 
+
+CikisYap=()=>{
+    fetch("http://bankrestapi.azurewebsites.net/api/Security/Logout")
+    .then((data)=>{
+        this.props.navigation.navigate("Login")
+        .catch(err=>alert(err));
+       })
+    }
 const MainNavigator = createStackNavigator({
     Login: {
         screen: Login,
@@ -71,7 +79,7 @@ const MainNavigator = createStackNavigator({
             title: "RedBank",
             headerLeft: <Icon name="power-off" size={25} color="white"
                 style={{ marginLeft: 15 }}
-                onPress={() => navigation.navigate("Login")} />,
+                onPress={() => this.CikisYap()} />,
             headerRight: <Icon name="user" size={25} color="white"
                 style={{ marginRight: 15 }}
                 onPress={() => navigation.navigate("KullaniciProfil")} />,

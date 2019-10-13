@@ -23,7 +23,8 @@
     "react-native-vector-icons": "^6.6.0",
     "react-navigation": "^4.0.10",
     "react-navigation-stack": "^1.9.3",
-    "react-phone-number-input": "^2.3.24"
+    "react-phone-number-input": "^2.3.24",
+    "react-timer-mixin": "^0.13.4"
   },
   "devDependencies": {
     "@babel/core": "7.6.2",
