@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.572
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaturaServisWebAPI", "FaturaServisWebAPI\FaturaServisWebAPI.csproj", "{ADF8D265-E0EB-4B65-9CD4-67D43DA47C76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaturaDataAccessLayer", "FaturaDataAccessLayer\FaturaDataAccessLayer.csproj", "{35B0B906-9533-44A7-8DB1-E4F8A1469B4A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ADF8D265-E0EB-4B65-9CD4-67D43DA47C76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADF8D265-E0EB-4B65-9CD4-67D43DA47C76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADF8D265-E0EB-4B65-9CD4-67D43DA47C76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADF8D265-E0EB-4B65-9CD4-67D43DA47C76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35B0B906-9533-44A7-8DB1-E4F8A1469B4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35B0B906-9533-44A7-8DB1-E4F8A1469B4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35B0B906-9533-44A7-8DB1-E4F8A1469B4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35B0B906-9533-44A7-8DB1-E4F8A1469B4A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D37421A2-E528-45EE-A420-EE9E24EEF8C4}
+	EndGlobalSection
+EndGlobal

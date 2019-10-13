@@ -1,0 +1,12 @@
+C:\Users\LENOVO\source\repos\FaturaServisWebAPI\FaturaDataAccessLayer\bin\Debug\FaturaDataAccessLayer.dll.config
+C:\Users\LENOVO\source\repos\FaturaServisWebAPI\FaturaDataAccessLayer\bin\Debug\FaturaDataAccessLayer.dll
+C:\Users\LENOVO\source\repos\FaturaServisWebAPI\FaturaDataAccessLayer\bin\Debug\FaturaDataAccessLayer.pdb
+C:\Users\LENOVO\source\repos\FaturaServisWebAPI\FaturaDataAccessLayer\bin\Debug\EntityFramework.dll
+C:\Users\LENOVO\source\repos\FaturaServisWebAPI\FaturaDataAccessLayer\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\LENOVO\source\repos\FaturaServisWebAPI\FaturaDataAccessLayer\bin\Debug\EntityFramework.xml
+C:\Users\LENOVO\source\repos\FaturaServisWebAPI\FaturaDataAccessLayer\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\LENOVO\source\repos\FaturaServisWebAPI\FaturaDataAccessLayer\obj\Debug\FaturaDataAccessLayer.csproj.CoreCompileInputs.cache
+C:\Users\LENOVO\source\repos\FaturaServisWebAPI\FaturaDataAccessLayer\obj\Debug\FaturaDataAccessLayer.csproj.CopyComplete
+C:\Users\LENOVO\source\repos\FaturaServisWebAPI\FaturaDataAccessLayer\obj\Debug\FaturaDataAccessLayer.dll
+C:\Users\LENOVO\source\repos\FaturaServisWebAPI\FaturaDataAccessLayer\obj\Debug\FaturaDataAccessLayer.pdb
+C:\Users\LENOVO\source\repos\FaturaServisWebAPI\FaturaDataAccessLayer\obj\Debug\FaturaDataAccessLayer.csprojAssemblyReference.cache
