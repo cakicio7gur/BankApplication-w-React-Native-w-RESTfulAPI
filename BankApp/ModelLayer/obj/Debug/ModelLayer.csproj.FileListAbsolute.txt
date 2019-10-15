@@ -28,7 +28,6 @@ C:\Users\IbrahimD\Documents\GitHub\BankApplication-React-Native-and-.NET-MVC\Ban
 C:\Users\IbrahimD\Documents\GitHub\BankApplication-React-Native-and-.NET-MVC\BankApp\ModelLayer\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\IbrahimD\Documents\GitHub\BankApplication-React-Native-and-.NET-MVC\BankApp\ModelLayer\bin\Debug\EntityFramework.xml
 C:\Users\IbrahimD\Documents\GitHub\BankApplication-React-Native-and-.NET-MVC\BankApp\ModelLayer\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\IbrahimD\Documents\GitHub\BankApplication-React-Native-and-.NET-MVC\BankApp\ModelLayer\obj\Debug\ModelLayer.csprojAssemblyReference.cache
 C:\Users\IbrahimD\Documents\GitHub\BankApplication-React-Native-and-.NET-MVC\BankApp\ModelLayer\obj\Debug\ModelLayer.csproj.CoreCompileInputs.cache
 C:\Users\IbrahimD\Documents\GitHub\BankApplication-React-Native-and-.NET-MVC\BankApp\ModelLayer\obj\Debug\ModelLayer.csproj.CopyComplete
 C:\Users\IbrahimD\Documents\GitHub\BankApplication-React-Native-and-.NET-MVC\BankApp\ModelLayer\obj\Debug\ModelLayer.dll

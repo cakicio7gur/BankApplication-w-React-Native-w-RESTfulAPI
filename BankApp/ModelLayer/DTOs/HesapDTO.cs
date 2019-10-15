@@ -9,6 +9,8 @@ namespace ModelLayer.DTOs
     public class HesapDTO
     {
         public int hesapNo { get; set; }
+        public string ad { get; set; }
+        public string soyad { get; set; }
         public Nullable<decimal> bakiye { get; set; }
         public Nullable<System.DateTime> hesapAcilisTarihi { get; set; }
         public Nullable<int> musteriNo { get; set; }

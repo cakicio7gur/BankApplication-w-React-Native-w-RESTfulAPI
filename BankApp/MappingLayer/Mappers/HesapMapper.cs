@@ -18,6 +18,8 @@ namespace MappingLayer.Mappers
                 var hesap = new HesapDTO();
                 hesap.hesapNo = ent.hesapNo;
                 hesap.musteriNo = ent.musteriNo;
+                hesap.ad = ent.Musteri.ad;
+                hesap.soyad= ent.Musteri.soyad;
                 hesap.hesapAcilisTarihi = ent.hesapAcilisTarihi;
                 hesap.bakiye = ent.bakiye;
                 hesap.ekNo = ent.ekNo;
@@ -33,6 +35,8 @@ namespace MappingLayer.Mappers
             var hesap = new HesapDTO();
             hesap.hesapNo = ent.hesapNo;
             hesap.musteriNo = ent.musteriNo;
+            hesap.ad = ent.Musteri.ad;
+            hesap.soyad = ent.Musteri.soyad;
             hesap.hesapAcilisTarihi = ent.hesapAcilisTarihi;
             hesap.bakiye = ent.bakiye;
             hesap.ekNo = ent.ekNo;

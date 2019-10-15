@@ -88,18 +88,15 @@ namespace BusinessLayer.BLLs
             }
         }
 
-        public void Update(HesapDTO model)
+        public void ParaIslem(int hesapNo, decimal tutar)
         {
             using (HesapRepository hesapRepo = new HesapRepository())
             {
                 try
                 {
-                    var hesap = new Hesap();
-                    hesap.musteriNo = model.musteriNo;
-                    hesap.hesapAcilisTarihi = model.hesapAcilisTarihi;
-                    hesap.bakiye = model.bakiye;
-                    hesap.acilisPlatformID = hesap.acilisPlatformID;
-                    hesapRepo.Update(hesap);
+                    var model = hesapRepo.GetById(x => x.hesapNo == hesapNo, x => x.Musteri, x => x.AcilisPlatformu);
+                    model.bakiye += tutar;
+                    hesapRepo.Update(model);
                 }
                 catch
                 {
@@ -107,7 +104,26 @@ namespace BusinessLayer.BLLs
                 }
             }
         }
+        public void HavaleVirman(int aliciHesapNo, int gonderenHesapNo, decimal tutar)
+        {
+            using (HesapRepository hesapRepo = new HesapRepository())
+            {
+                try
+                {
+                    var alici = hesapRepo.GetById(x => x.hesapNo == aliciHesapNo, x => x.Musteri, x => x.AcilisPlatformu);
+                    alici.bakiye += tutar;
+                    hesapRepo.Update(alici);
 
+                    var gonderen = hesapRepo.GetById(x => x.hesapNo == gonderenHesapNo, x => x.Musteri, x => x.AcilisPlatformu);
+                    gonderen.bakiye -= tutar;
+                    hesapRepo.Update(gonderen);
+                }
+                catch
+                {
+                    throw;
+                }
+            }
+        }
         public void Delete(int id)
         {
             using (HesapRepository hesapRepo = new HesapRepository())
@@ -123,13 +139,13 @@ namespace BusinessLayer.BLLs
             }
         }
 
-        public decimal? ToplamBakiye(int id)
+        public decimal ToplamBakiye(int id)
         {
             using (HesapRepository hesapRepo = new HesapRepository())
             {
                 try
                 {
-                    var toplamBakiye = hesapRepo.ToplamBakiye(id);
+                    decimal toplamBakiye = hesapRepo.ToplamBakiye(id);
                     return toplamBakiye;
                 }
                 catch

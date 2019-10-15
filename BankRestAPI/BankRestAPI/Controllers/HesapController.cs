@@ -40,10 +40,17 @@ namespace BankRestAPI.Controllers
             return Ok();
         }
         [HttpPut]
-        public IHttpActionResult Update(HesapDTO model)
+        public IHttpActionResult ParaIslem(int hesapNo, decimal tutar)
         {
             HesapBLL hesapBusiness = new HesapBLL();
-            hesapBusiness.Update(model);
+            hesapBusiness.ParaIslem(hesapNo, tutar);
+            return Ok();
+        }
+        [HttpPut]
+        public IHttpActionResult HavaleVirman(int aliciHesapNo, int gonderenHesapNo, decimal tutar)
+        {
+            HesapBLL hesapBusiness = new HesapBLL();
+            hesapBusiness.HavaleVirman(aliciHesapNo, gonderenHesapNo, tutar);
             return Ok();
         }
         [HttpDelete]
@@ -57,7 +64,7 @@ namespace BankRestAPI.Controllers
         public IHttpActionResult GetToplamBakiye(int id)
         {
             HesapBLL hesapBusiness = new HesapBLL();
-            var toplamBakiye = hesapBusiness.ToplamBakiye(id);
+            decimal toplamBakiye = hesapBusiness.ToplamBakiye(id);
             return Ok(toplamBakiye);
         }
     }

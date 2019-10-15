@@ -17,9 +17,9 @@ namespace DataAccessLayer.Concretes
             GC.SuppressFinalize(this);
         }
 
-        public decimal? ToplamBakiye(int id)
+        public decimal ToplamBakiye(int id)
         {
-            decimal? toplamBakiye = 0;
+            decimal toplamBakiye = 0;
             using (DBContext db = new DBContext())
             {
                 try
@@ -28,7 +28,7 @@ namespace DataAccessLayer.Concretes
                     var model = table.Where(x => x.musteriNo == id);
                     foreach (var item in model)
                     {
-                        toplamBakiye += item.bakiye;
+                        toplamBakiye += Convert.ToDecimal(item.bakiye);
                     }
                     return toplamBakiye;
                 }
