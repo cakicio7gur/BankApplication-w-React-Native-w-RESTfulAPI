@@ -1,6 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, Text, View } from 'react-native';
-import styles from '../styles.js';
+import styles from './hesapDetaylariStyle.js';
 import moment from 'moment';
 
 export default class HesapDetaylari extends React.Component {

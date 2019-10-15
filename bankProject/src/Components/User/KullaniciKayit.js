@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { TouchableOpacity,Text, View, TextInput, Alert,ScrollView } from 'react-native';
-import styles from '../kullaniciKayitStyle.js';
+import styles from './kullaniciKayitStyle.js';
 
 export default class KullaniciKayit extends React.Component {
   constructor(props) {

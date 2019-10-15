@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { TouchableOpacity, Text, View, TextInput,Alert,ScrollView } from 'react-native';
 import DateTimePicker from "react-native-modal-datetime-picker";
 import moment from 'moment';
-import styles from '../kullaniciKayitStyle.js';
+import styles from './kullaniciKayitStyle.js';
 import * as EmailValidator from 'email-validator'
 export default class KullaniciKayit2 extends React.Component {
   constructor(props) {

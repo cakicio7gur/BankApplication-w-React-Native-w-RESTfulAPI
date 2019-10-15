@@ -2,7 +2,7 @@ import React from 'react';
 import { TouchableOpacity, Text, View, ScrollView, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import moment from 'moment';
-import styles from '../styles.js';
+import styles from './hesaplarimStyle.js';
 
 export default class Hesaplarim extends React.Component {
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, TouchableOpacity, ScrollView, TextInput, Alert } from 'react-native';
 import moment from 'moment';
-import styles from '../styles.js';
+import styles from './HesapParaCekYatirStyle.js';
 export default class HesapParaCekme extends Component {
   constructor(props) {
     super(props);
