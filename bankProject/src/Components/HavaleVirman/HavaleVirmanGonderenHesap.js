@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, TouchableHighlight, ScrollView } from 'react-native';
-import styles from '../styles.js';
+import { Text, View, TouchableOpacity, ScrollView } from 'react-native';
+import styles from '../faturaHavaleVirmanStyle.js';
 export default class HavaleGonderenHesap extends Component {
   constructor(props) {
     super(props);

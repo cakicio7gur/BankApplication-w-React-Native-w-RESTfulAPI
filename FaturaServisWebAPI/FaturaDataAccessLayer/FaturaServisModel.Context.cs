@@ -16,7 +16,7 @@ namespace FaturaDataAccessLayer
     public partial class AskiDatabaseEntities : DbContext
     {
         public AskiDatabaseEntities()
-            : base("name=AskiDatabaseEntities")
+            : base(@"metadata = res://*/FaturaServisModel.csdl|res://*/FaturaServisModel.ssdl|res://*/FaturaServisModel.msl;provider=System.Data.SqlClient;provider connection string=';data source=tcp:server-bank.database.windows.net,1433;initial catalog=AskiDatabase;Persist Security Info=False;user id=adminBank;password=bank+App;MultipleActiveResultSets=True;App=EntityFramework&quot';")
         {
         }
     

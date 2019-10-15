@@ -1,13 +1,7 @@
 import React, {Component} from 'react';
-import {
-  Text,
-  View,
-  TouchableOpacity,
-  ImageBackground,
-  ScrollView,
-} from 'react-native';
+import {Text,View,TouchableOpacity,ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import styles from '../styles.js';
+import styles from '../faturaHavaleVirmanStyle.js';
 export default class Anasayfa extends Component {
   constructor(props) {
     super(props);
@@ -45,7 +39,7 @@ export default class Anasayfa extends Component {
               <TouchableOpacity
                 style={styles.buttonStyleMenu}
                 onPress={() => {
-                  this.props.navigation.navigate('Hesaplarim', {musteriNo: musteriNo});
+                this.props.navigation.navigate('Hesaplarim', {musteriNo: musteriNo});
                 }}>
                 <Icon
                   name="briefcase"
@@ -77,7 +71,7 @@ export default class Anasayfa extends Component {
               <TouchableOpacity
                 style={styles.buttonStyleMenu}
                 onPress={() => {
-                  this.props.navigation.navigate('FaturaOdemeKurumSecimi',{musteriNo: musteriNo});
+                  this.props.navigation.navigate('FaturaOdemeKurumSecimi',{musteriNo: musteriNo,islemTuruID:5});
                 }}>
                 <Icon
                   name="money"

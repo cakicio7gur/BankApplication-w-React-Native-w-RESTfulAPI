@@ -22,7 +22,6 @@ export default StyleSheet.create({
     },  
     body: {
       flex: 0.4,
-      backgroundColor: "#F8F8F8",
       alignItems: 'center',
     },
     avatar: {
@@ -77,6 +76,16 @@ export default StyleSheet.create({
     buttonContainer: {
       width: '85%',
       justifyContent: "center",
+    },
+    buttonContainerPY:{
+      width: '82%',
+      justifyContent: "flex-start",
+      alignItems: "flex-start",
+      borderRadius: 5,
+      padding: 6,
+      margin: 5,
+      borderWidth: 0.8,
+      borderColor: "#c5002F",
     },
     buttonContainerKP: {
       marginTop: 10,
@@ -318,6 +327,15 @@ export default StyleSheet.create({
       borderColor: "#c5002f",
       fontFamily: 'Bahnschrift',
     },
+    hesapBilgiContainerFO: {
+      flex: 17,
+      padding: 5,
+      margin: 6,
+      borderWidth: 0.8,
+      borderRadius: 5,
+      borderColor: "#c5002f",
+      fontFamily: 'Bahnschrift',
+    },
     buttonContainerHesaplarim: {
       marginTop: 15,
       justifyContent: "center",
@@ -334,8 +352,9 @@ export default StyleSheet.create({
       width: '94%',
     },
     inputContainerKK: {
-      flex: 3,
-      justifyContent: "space-evenly",
+      marginTop:25,
+      flex: 5,
+      justifyContent: "center",
     },
     inputStyleKK: {
       backgroundColor: "#F8F8F8",
@@ -347,8 +366,8 @@ export default StyleSheet.create({
       fontFamily: 'Bahnschrift',
     },
     buttonContainerKK: {
-      flex: 0.5,
-      justifyContent: "center",
+      flex: 1,
+      marginTop:25,
     },
     buttonStyleKK: {
       backgroundColor: "#c5002f",
@@ -356,51 +375,61 @@ export default StyleSheet.create({
       alignItems: "center",
       borderRadius: 5,
       padding: 10,
+      margin: 25,
+      flexDirection: "row",
+    },
+    buttonStyleLogin:{
+      backgroundColor: "#c5002f",
+      justifyContent: "center",
+      alignItems: "center",
+      borderRadius: 5,
+      padding: 10,
       margin: 100,
-      flexDirection: "row"
+      flexDirection: "row",
     },
     buttonColorKK: {
       color: 'white',
       fontWeight: 'bold',
       fontFamily: 'Bahnschrift',
     },
+    buttonColorL:{
+      fontWeight: 'bold',
+      fontFamily: 'Bahnschrift',
+    },
     buttonRegisterKK: {
-      flexDirection: 'row',
       justifyContent: 'center',
       alignItems: 'center',
-      marginBottom: 8,
-      borderRadius: 30,
     },
     datetimeText:{
       borderRadius:5,
+      padding: 5,
+      margin: 25,
       borderBottomWidth:2,
       borderColor: '#c5002f', 
       backgroundColor:'#f8f8f8',
-      width:'66%',
+      fontFamily: 'Bahnschrift',
       height:40,
-      justifyContent: 'center',
-      alignItems: 'center',
-      marginLeft: 11,
     },
     imageStyle: {
       flex: 1,
       width: null,
-      height: null
+      height:null
     },
     styleLogo: {
-      flex: 2,
+      flex: 3,
     },
     inputContainerL: {
       flex: 0.6,
       justifyContent: "space-evenly",
     },
     inputContainerLogin: {
-      flex: 0.6,
+      flex: 3,
+      justifyContent: "center",
     },
     inputStyleL: {
       backgroundColor: "#F8F8F8",
       padding: 5,
-      margin: 20,
+      margin: 15,
       borderBottomWidth: 2,
       borderColor: "#c5002F",
       fontFamily: 'Bahnschrift',
@@ -415,19 +444,13 @@ export default StyleSheet.create({
       justifyContent: "center",
     },
     buttonContainerL: {
-      marginTop:100,
-      flex: 0.4,
+      flex:1,
       justifyContent: "center",
+      textAlign:"center",
     },
     registerColorL: {
       fontWeight: 'bold',
       fontFamily: 'Bahnschrift',
-    },
-    bosluk: {
-      flex: 0.2,
-    },
-    boslukTop: {
-      flex: 0.5,
     },
     bottomBosluk: {
       flex: 0.1

@@ -1,15 +1,45 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, TouchableHighlight, ScrollView } from 'react-native';
-import styles from '../styles.js';
- 
+import {Text, View, TouchableOpacity, ScrollView,Alert } from 'react-native';
+import styles from '../faturaHavaleVirmanStyle.js';
+import moment from 'moment';
+
 export default class FaturaOdemeHesapSecimi extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      Hesaplar:[]
     };
   }
+  componentDidMount() {
+    const { musteriNo } = this.props.navigation.state.params;
+    fetch('http://bankrestapi.azurewebsites.net/api/Hesap/GetByMusteriNo?musteriNo='+musteriNo)
+      .then(res => res.json())
+      .then(response => {
+        this.setState({Hesaplar: response});      
+      })
+      .catch(err => alert(err));
+}
 
   render() {
+    var islemTarihi = moment().format();
+    const { musteriNo,odenecekFatura,islemTuruID } = this.props.navigation.state.params;
+    let hesaplar = this.state.Hesaplar.map((hesap) => {
+      return (
+        <View style={styles.contContainer} key={hesap.hesapNo}>
+        <TouchableOpacity style={styles.buttonContainer} 
+        onPress={() => { 
+          if(hesap.bakiye>=odenecekFatura.faturaTutari)
+            this.props.navigation.navigate('FaturaOdemeOnayEkrani',{musteriNo:musteriNo,odenecekFatura:odenecekFatura,odenenHesap:hesap,islemTarihi:islemTarihi,islemTuruID:islemTuruID})
+          else
+            Alert.alert("Yetersiz Bakiye!","Seçilen hesap bakiyesi, işlem için yetersizdir!")
+          }}>
+              <Text style={styles.hesapNo}> {hesap.musteriNo} - {hesap.ekNo} </Text>
+              <Text style={styles.hesapText}> Bakiye: {hesap.bakiye} TL</Text>
+              <Text style={styles.hesapText}> Kullanılabilir Bakiye: {hesap.bakiye} TL</Text>
+        </TouchableOpacity>
+      </View>
+      )
+    });
     return (
       <View style={styles.container,{marginTop:15}}>
         <ScrollView>
@@ -20,17 +50,7 @@ export default class FaturaOdemeHesapSecimi extends Component {
                 <Text style={styles.buttonColorMenu}>HESAP SEÇİMİ</Text>
               </View>
             </View>
-
-            <View style={styles.contContainer}>
-              <TouchableOpacity 
-              style={styles.buttonContainer}
-              onPress={() => { this.props.navigation.navigate('FaturaOdemeOnayEkrani')}}>
-                    <Text style={styles.hesapNo}> 1001 - 10 </Text>
-                    <Text style={styles.hesapText}> Bakiye: 2050 TL</Text>
-                    <Text style={styles.hesapText}> Kullanılabilir Bakiye: 2050 TL</Text>
-              </TouchableOpacity>
-            </View>
-
+            {hesaplar}
           </View>
         </ScrollView>
       </View>

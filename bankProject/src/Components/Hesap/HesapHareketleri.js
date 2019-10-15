@@ -36,23 +36,22 @@ export default class HesapHareketleri extends React.Component {
             return (
                 <View style={{ flexDirection: 'row' }} key={transfer.ptID}>
                     <TouchableOpacity style={styles.tarih} activeOpacity={1}>
-
-                        <View style={{ flexDirection: 'column', justifyContent: 'space-evenly', alignItems: 'center' }}>
-                            <Text style={{ fontSize: 21, fontWeight: 'bold', fontStyle: 'italic' }}>{moment(transfer.tarih).format('D')}</Text>
-                            <Text style={{ fontSize: 17, fontStyle: 'italic' }}>{moment(transfer.tarih).format("MMMM")}</Text>
-                            <Text style={{ fontSize: 17, fontStyle: 'italic' }}>{moment(transfer.tarih).format('YYYY')}</Text>
+                        <View style={styles.tarihView}>
+                            <Text style={styles.dateDay}>{moment(transfer.tarih).format('D')}</Text>
+                            <Text style={styles.date}>{moment(transfer.tarih).format("MMMM")}</Text>
+                            <Text style={styles.date}>{moment(transfer.tarih).format('YYYY')}</Text>
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity style={[styles.hareketBilgi, transfer.gonderenHesapNo != hesapNo ? styles.gelenTutar : styles.gidenTutar]}
                         onPress={() => { this.refs.modal3.open() }}>
-                        <View style={{ flexDirection: 'column' }}>
-                            <Text style={{ fontSize: 15, margin: 5,fontFamily:'Bahnschrift'}}>Gnd Hesap:  {gonderenMusteriNo} - {gonderenEkNo}</Text>
-                            <Text style={{ fontSize: 15, margin: 5,fontFamily:'Bahnschrift' }}>Alıcı Hesap:  {aliciMusteriNo} - {aliciEkNo}</Text>
+                        <View style={styles.bilgiView}>
+                            <Text style={styles.aliciGondericiStyle}>Gnd Hesap:  {gonderenMusteriNo} - {gonderenEkNo}</Text>
+                            <Text style={styles.aliciGondericiStyle}>Alıcı Hesap:  {aliciMusteriNo} - {aliciEkNo}</Text>
 
-                            <Text style={[{ fontWeight: 'bold', fontSize: 17,fontFamily:'Bahnschrift', margin: 5 }, transfer.gonderenHesapNo != hesapNo ? styles.gelenTutar : styles.gidenTutar]}>{parseFloat(tutar).toFixed(2)} TL</Text>
+                            <Text style={[styles.tutarStyle, transfer.gonderenHesapNo != hesapNo ? styles.gelenTutar : styles.gidenTutar]}>{parseFloat(tutar).toFixed(2)} TL</Text>
                         </View>
-                        <View style={{ justifyContent: 'space-evenly' }}>
-                            <Text style={{ fontSize: 15, fontStyle: 'italic',fontFamily:'Bahnschrift', fontWeight: 'bold', marginLeft: 20 }}>{transfer.tur}</Text>
+                        <View style={styles.islemStyle}>
+                            <Text style={styles.tur}>{transfer.tur}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -63,11 +62,7 @@ export default class HesapHareketleri extends React.Component {
                 <ScrollView>
                     {paraTransferleri}
                 </ScrollView>
-                <Modal
-                        style={styles.modal}
-                        position={'center'}
-                        ref={'modal3'}
-                        isDisabled={this.state.modalVisible}>
+                <Modal style={styles.modal} position={'center'} ref={'modal3'} isDisabled={this.state.modalVisible}>
 
                         <View style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
                             <Text style={styles.islemDetay}>İşlem Detayı</Text>
@@ -150,7 +145,7 @@ const styles = {
         color: '#ff0000',
     },
     modal: {
-        height: 250,
+        height: 275,
         width: 300,
         borderRadius: 5,
         borderColor: '#c5002f',
@@ -192,4 +187,42 @@ const styles = {
         fontSize: 14,
         fontFamily:'Bahnschrift'
     },
+    aliciGondericiStyle:{
+        fontSize: 15, 
+        margin: 5,
+        fontFamily:'Bahnschrift' 
+    },
+    tarihView:{ 
+        flexDirection: 'column', 
+        justifyContent: 'space-evenly', 
+        alignItems: 'center' 
+    },
+    bilgiView:{
+         flexDirection: 'column', 
+    },
+    tutarStyle:{ 
+        fontWeight: 'bold', 
+        fontSize: 17,
+        fontFamily:'Bahnschrift', 
+        margin: 5 
+    },
+    islemStyle:{ 
+        justifyContent: 'space-evenly' 
+    },
+    tur:{ 
+        fontSize: 15, 
+        fontStyle: 'italic',
+        fontFamily:'Bahnschrift', 
+        fontWeight: 'bold', 
+        marginLeft: 20 
+    },
+    date:{ 
+        fontSize: 17, 
+        fontStyle: 'italic' 
+    },
+    dateDay:{ 
+        fontSize: 21, 
+        fontWeight: 'bold', 
+        fontStyle: 'italic' 
+    }
 }

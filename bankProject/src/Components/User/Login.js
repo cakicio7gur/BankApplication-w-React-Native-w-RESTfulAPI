@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { TouchableOpacity, Image, Text, View, TextInput, TouchableHighlight, Alert } from 'react-native';
-import styles from '../styles.js';
+import styles from '../loginStyle.js';
 
 export default class Login extends React.Component {
   constructor(props) {
@@ -50,16 +50,13 @@ export default class Login extends React.Component {
         <View style={styles.boslukTop}></View>
 
         <View style={styles.styleLogo}>
-          <Image
-            style={styles.imageStyle}
+          <Image style={styles.imageStyle}
             resizeMode="contain"
             source={require("../../img/logo.png")} />
         </View>
 
-        <View style={styles.bosluk}></View>
         <View style={styles.inputContainerLogin}>
-          <TextInput
-            placeholder="TCKN"
+          <TextInput placeholder="TCKN"
             underlineColorAndroid='transparent'
             placeholderTextColor="gray"
             style={styles.inputStyleL}
@@ -68,7 +65,6 @@ export default class Login extends React.Component {
             keyboardType={'phone-pad'}
             onChangeText={(text) => this.validateTCKN(text)}
           />
-          
           <TextInput
             placeholder="***********"
             underlineColorAndroid='transparent'
@@ -80,24 +76,17 @@ export default class Login extends React.Component {
           />
         </View>
 
-        <View style={styles.bosluk}></View>
-
         <View style={styles.buttonContainerL}>
-          <TouchableOpacity style={styles.buttonStyleKK}
+          <TouchableOpacity style={styles.buttonStyleLogin}
             onPress={()=> {this.GirisYap()}}>
-            <Text style={styles.buttonColorKK} > Giriş Yap </Text>
-          </TouchableOpacity>
-        </View>
-
-        <TouchableHighlight style={styles.buttonRegisterKK}>
-          <Text style={styles.buttonColor}>Bir Hesabın Yok Mu?</Text>
-        </TouchableHighlight>
-
-        <TouchableOpacity style={styles.buttonRegisterKK}
-            onPress={() => { this.props.navigation.navigate('KullaniciKayit') }}>
-          <Text style={styles.registerColorL}>Kayıt Ol</Text>
+            <Text style={styles.buttonColorLogin} > Giriş Yap </Text>
         </TouchableOpacity>
-
+        </View>
+        <View style={styles.buttonRegisterLogin}>
+          <Text>Bir Hesabın Yok Mu?</Text>
+          <TouchableOpacity onPress={()=>this.props.navigation.navigate("KullaniciKayit")}>
+            <Text style={styles.registerColor}>Kayıt Ol</Text></TouchableOpacity>
+        </View>
         <View style={styles.bottomBosluk}></View>
       </View>
     );

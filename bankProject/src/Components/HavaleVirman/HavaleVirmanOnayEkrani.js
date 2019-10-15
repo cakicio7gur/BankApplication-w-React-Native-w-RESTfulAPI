@@ -1,53 +1,65 @@
 import React, { Component } from 'react';
-import {Text, View, TouchableOpacity, TouchableHighlight, ScrollView, TextInput, Alert } from 'react-native';
-import styles from '../styles.js';
+import { Text, View, TouchableOpacity, TouchableHighlight, ScrollView, TextInput, Alert } from 'react-native';
+import styles from '../faturaHavaleVirmanStyle.js';
 import moment from 'moment';
 
 export default class HavaleOnayEkrani extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      aciklama:"",
-      validateAciklama:false
+      aciklama: "",
+      validateAciklama: false
     };
   }
-  IslemYap = () =>{
-    const { musteriNo,aliciHesap,gonderenHesap,gonderilecekTutar,islemTuruID,islemTarihi } = this.props.navigation.state.params;
+  IslemYap = () => {
+    const { musteriNo, aliciHesap, gonderenHesap, gonderilecekTutar, islemTuruID, islemTarihi } = this.props.navigation.state.params;
     let ParaTransferi = {
       aliciHesapNo: aliciHesap.hesapNo,
       gonderenHesapNo: gonderenHesap.hesapNo,
       islemTutari: gonderilecekTutar,
       aciklama: this.state.aciklama,
-      islemTarihi:islemTarihi,
+      islemTarihi: islemTarihi,
       islemTuruID: islemTuruID
     }
-      fetch("http://bankrestapi.azurewebsites.net/api/ParaTransferi/Add", {
+    fetch("http://bankrestapi.azurewebsites.net/api/ParaTransferi/Add", {
       method: 'POST',
       body: JSON.stringify(ParaTransferi),
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-      }})
-      .then(() => 
-          Alert.alert(
-              "İşleminiz Tamamlanmıştır!", 
-              "Para transfer işleminiz başarılı bir şekilde tamamlanmıştır!",
-              [{text: 'OK', onPress:() => this.props.navigation.navigate('Anasayfa')}]
-          )
-      ) 
-    .catch(err=>alert("Hata!", "Para transfer işlemi sırasında bir hata oluştu !\nLütfen tekrar deneyin!"))
+      }
+    })
+      .then(() => this.paraTransferi())
+      .catch(err => alert("Hata!", "Para transfer işlemi sırasında bir hata oluştu !\nLütfen tekrar deneyin!"))
+  }
+  paraTransferi = () => {
+    const { aliciHesap, gonderenHesap, gonderilecekTutar } = this.props.navigation.state.params;
+    fetch("http://bankrestapi.azurewebsites.net/api/Hesap/HavaleVirman?aliciHesapNo=" + aliciHesap.hesapNo + "&gonderenHesapNo=" + gonderenHesap.hesapNo + "&tutar=" + gonderilecekTutar, {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      }
+    })
+      .then(() =>
+        Alert.alert(
+          "Başarılı!",
+          "Para transfer işleminiz başarılı bir şekilde tamamlanmıştır!",
+          [{ text: 'OK', onPress: () => this.props.navigation.navigate('Anasayfa') }]
+        )
+      )
+      .catch(err => Alert.alert("Başarısız!", "Para transfer işlemi sırasında bir hata oluştu !\nLütfen tekrar deneyin!"))
   }
   validateAciklama = (text) => {
-    if(text != '')
-      this.setState({validateAciklama: true,aciklama:text})
+    if (text != '')
+      this.setState({ validateAciklama: true, aciklama: text })
     else
-      this.setState({validateAciklama: false})
+      this.setState({ validateAciklama: false })
   }
   render() {
-    const { musteriNo,aliciHesap,gonderenHesap,gonderilecekTutar,islemTarihi } = this.props.navigation.state.params;
-
+    const { musteriNo, aliciHesap, gonderenHesap, gonderilecekTutar, islemTarihi, islemTuruID } = this.props.navigation.state.params;
     return (
-      <View style={styles.container,{marginTop:15}}>
+      <View style={styles.container, { marginTop: 15 }}>
         <ScrollView>
           <View style={styles.body}>
 

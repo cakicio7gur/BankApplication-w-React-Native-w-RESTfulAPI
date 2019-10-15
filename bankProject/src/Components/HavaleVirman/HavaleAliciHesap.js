@@ -1,33 +1,40 @@
 import React, { Component } from 'react';
 import { Text, View, TouchableOpacity, TouchableHighlight, ScrollView, TextInput, Alert } from 'react-native';
-import styles from '../styles.js';
+import styles from '../faturaHavaleVirmanStyle.js';
 export default class HavaleAliciHesap extends Component {
   constructor(props) {
     super(props);
     this.state = {
       Hesap: {},
       validatealiciHesapNo: false,
-      aliciHesapNo: 0
+      aliciHesapNo: ''
     };
   }
   musteriGetir = () => {
     const { musteriNo, islemTuruID } = this.props.navigation.state.params;
-    fetch('http://bankrestapi.azurewebsites.net/api/Hesap/GetById/' + this.state.aliciHesapNo)
-      .then(res => {
-        if (res.ok) {
-          fetch("http://bankrestapi.azurewebsites.net/api/Hesap/GetById/" + this.state.aliciHesapNo)
-            .then(res => res.json())
-            .then(response => {
-              this.setState({ Hesap: response });
-              this.props.navigation.navigate('HavaleVirmanGonderenHesap', { musteriNo: musteriNo, aliciHesap: this.state.Hesap, islemTuruID: islemTuruID })
-            })
-            .catch(err => Alert.alert("Hata!", "Bir hata oluştu lütfen tekrar deneyin!"));
-        }
-        else {
-          Alert.alert("Geçersiz Hesap Numarası!", "Lütfen geçerli bir Hesap Numarası giriniz!")
-        }
-      })
-      .catch(err => Alert.alert("Hata!", "Bir hata oluştu lütfen tekrar deneyin!"));
+    let alicimusterino = this.state.aliciHesapNo.toString().substring(0, 4)
+    let gonderenmusterino = musteriNo.toString().substring(0, 4)
+    if (alicimusterino != gonderenmusterino) {
+      fetch('http://bankrestapi.azurewebsites.net/api/Hesap/GetById/' + this.state.aliciHesapNo)
+        .then(res => {
+          if (res.ok) {
+            fetch("http://bankrestapi.azurewebsites.net/api/Hesap/GetById/" + this.state.aliciHesapNo)
+              .then(res => res.json())
+              .then(response => {
+                this.setState({ Hesap: response });
+                this.props.navigation.navigate('HavaleVirmanGonderenHesap', { musteriNo: musteriNo, aliciHesap: this.state.Hesap, islemTuruID: islemTuruID })
+              })
+              .catch(err => Alert.alert("Hata!", "Bir hata oluştu lütfen tekrar deneyin!"));
+          }
+          else {
+            Alert.alert("Geçersiz Hesap Numarası!", "Lütfen geçerli bir Hesap Numarası giriniz!")
+          }
+        })
+        .catch(err => Alert.alert("Hata!", "Bir hata oluştu lütfen tekrar deneyin!"));
+    }
+    else {
+      Alert.alert("Bilgi","Girilen Hesap Numarası kendi hesabınıza aittir. Kendi hesabınıza transfer yapabilmek için 'VİRMAN' işlemini kullanınız.")
+    }
   }
   validatealiciHesapNo = (text) => {
     this.setState({ aliciHesapNo: text.replace(/[^0-9]/g, '') });
@@ -56,7 +63,9 @@ export default class HavaleAliciHesap extends Component {
                 placeholder="Örn: 100110"
                 underlineColorAndroid='transparent'
                 placeholderTextColor="gray"
+                keyboardType={'phone-pad'}
                 maxLength={11}
+                value={this.state.aliciHesapNo}
                 onChangeText={(text) => this.validatealiciHesapNo(text)}>
               </TextInput>
             </View>

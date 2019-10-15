@@ -1,0 +1,12 @@
+C:\Users\LENOVO\Documents\GitHub\BankApplication-React-Native-and-.NET-MVC\FaturaServisWebAPI\FaturaDataAccessLayer\bin\Release\FaturaDataAccessLayer.dll.config
+C:\Users\LENOVO\Documents\GitHub\BankApplication-React-Native-and-.NET-MVC\FaturaServisWebAPI\FaturaDataAccessLayer\bin\Release\FaturaDataAccessLayer.dll
+C:\Users\LENOVO\Documents\GitHub\BankApplication-React-Native-and-.NET-MVC\FaturaServisWebAPI\FaturaDataAccessLayer\bin\Release\FaturaDataAccessLayer.pdb
+C:\Users\LENOVO\Documents\GitHub\BankApplication-React-Native-and-.NET-MVC\FaturaServisWebAPI\FaturaDataAccessLayer\bin\Release\EntityFramework.dll
+C:\Users\LENOVO\Documents\GitHub\BankApplication-React-Native-and-.NET-MVC\FaturaServisWebAPI\FaturaDataAccessLayer\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\LENOVO\Documents\GitHub\BankApplication-React-Native-and-.NET-MVC\FaturaServisWebAPI\FaturaDataAccessLayer\bin\Release\EntityFramework.xml
+C:\Users\LENOVO\Documents\GitHub\BankApplication-React-Native-and-.NET-MVC\FaturaServisWebAPI\FaturaDataAccessLayer\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\LENOVO\Documents\GitHub\BankApplication-React-Native-and-.NET-MVC\FaturaServisWebAPI\FaturaDataAccessLayer\obj\Release\FaturaDataAccessLayer.csprojAssemblyReference.cache
+C:\Users\LENOVO\Documents\GitHub\BankApplication-React-Native-and-.NET-MVC\FaturaServisWebAPI\FaturaDataAccessLayer\obj\Release\FaturaDataAccessLayer.csproj.CoreCompileInputs.cache
+C:\Users\LENOVO\Documents\GitHub\BankApplication-React-Native-and-.NET-MVC\FaturaServisWebAPI\FaturaDataAccessLayer\obj\Release\FaturaDataAccessLayer.csproj.CopyComplete
+C:\Users\LENOVO\Documents\GitHub\BankApplication-React-Native-and-.NET-MVC\FaturaServisWebAPI\FaturaDataAccessLayer\obj\Release\FaturaDataAccessLayer.dll
+C:\Users\LENOVO\Documents\GitHub\BankApplication-React-Native-and-.NET-MVC\FaturaServisWebAPI\FaturaDataAccessLayer\obj\Release\FaturaDataAccessLayer.pdb

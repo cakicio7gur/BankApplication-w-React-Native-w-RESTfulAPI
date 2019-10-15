@@ -1,51 +1,93 @@
 import React, { Component } from 'react';
-import { TouchableOpacity, TouchableHighlight,Text, View, TextInput, Alert } from 'react-native';
-import styles from '../styles.js';
+import { TouchableOpacity,Text, View, TextInput, Alert,ScrollView } from 'react-native';
+import styles from '../kullaniciKayitStyle.js';
 
 export default class KullaniciKayit extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      tcknError:"",
+      passwordError:"",
+      adError:"",
+      soyadError:"",
       Musteri: {},
-      validateText: false,
+      ad:'',
+      soyad:'',
+      validateSoyad:false,
+      validateAd: false,
       validateTCKN: false,
       validatePassword: false,
       pickerData:''
     }
   }
-  validateText = (text) => {
-    const alph=/^[a-z\sa-zA-ZğüşöçİĞÜŞÖÇ\sA-Z]+$/
-    if (alph.test(text) && text != '') {
-      this.setState({ validateText: true })
+  
+  validateAd = (text) => {
+    let musteri=this.state.Musteri;
+    musteri.ad=text.replace(/[0-9&+,:;=?@#|'~₺{}<>./^*()%!-]/g, ''); 
+    this.setState({Musteri:musteri})
+    if (text != '') {
+      this.setState({ 
+        validateAd: true,
+        adError:""
+      })
     }
     else {
-      this.setState({ validateText: false })
+      this.setState({ 
+        validateAd: false,
+        adError:"!"
+      })
+    }
+  }
+
+  validateSoyad = (text) => {
+    let musteri=this.state.Musteri;
+    musteri.soyad=text.replace(/[0-9&+,:;=?@#|'~₺{}<>./^*()%!-]/g, '');
+    this.setState({Musteri:musteri})
+    if (text != '') {
+      this.setState({ 
+        validateSoyad: true,
+        soyadError:""
+      })
+    }
+    else {
+      this.setState({ 
+        validateSoyad: false,
+        soyadError:"!"
+      })
     }
   }
 
   validateTCKN = (text) => {
-    if (text !== '') {
-      let musteri = this.state.Musteri;
-      musteri.tckn = text.replace(/[^0-9]/g, '');
+    let musteri = this.state.Musteri;
+    musteri.tckn = text.replace(/[^0-9]/g, '');
+    this.setState({Musteri:musteri})
+    if (text !== '' && this.state.Musteri.tckn.length == 11) {
       this.setState({
-        Musteri: musteri,
+        tcknError:"",
         validateTCKN: true,
       });
     }
     else
-      this.setState({ validateTCKN: false })
+      this.setState({ tcknError:"!",validateTCKN: false })
   }
+
   validatePassword = (text) => {
-    if (text != '')
-      this.setState({ validatePassword: true })
+    if (text != '' && this.state.Musteri.sifre.length>=6)
+      this.setState({ 
+        validatePassword: true,
+        passwordError:""
+       })
     else
-      this.setState({ validatePassword: false })
+      this.setState({ 
+        validatePassword: false,
+        passwordError:"!" })
   }
 
   KayitOl = () => {
     let Musteri = this.state.Musteri;
-    if (this.state.validateTCKN && this.state.validatePassword && this.state.validateText) {
+    if (this.state.validateTCKN && this.state.validatePassword && this.state.validateAd && this.state.validateSoyad) {
       if (this.state.Musteri.tckn.length != 11) {
+        this.setState({tcknError:"!"})
         Alert.alert('Hata!', 'TC Kimlik Numarası 11 Haneli olmalıdır!')
       }
       else {
@@ -61,22 +103,23 @@ export default class KullaniciKayit extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+        <ScrollView>
         <View style={styles.inputContainerKK}>
+          <View style={{flexDirection:"row"}}>
           <TextInput id='tckn'
             placeholder="TCKN"
             underlineColorAndroid='transparent'
             placeholderTextColor="gray"
             style={styles.inputStyleKK}
             maxLength={11}
+            value={this.state.Musteri.tckn}
             keyboardType={'phone-pad'}
-            onChangeText={(text) => {
-              let musteri = this.state.Musteri;
-              musteri.tckn = text;
-              this.setState({ Musteri: musteri })
-              this.validateTCKN(text)
-            }}
-
+            onChangeText={(text) =>this.validateTCKN(text)}
           />
+          <Text style={styles.inputStyleIcon}> {this.state.tcknError} </Text>
+          </View>
+
+          <View style={{flexDirection:"row"}}>
           <TextInput id='sifre'
             placeholder="Şifre"
             underlineColorAndroid='transparent'
@@ -91,45 +134,46 @@ export default class KullaniciKayit extends React.Component {
               this.validatePassword(text)
             }}
           />
+          <Text style={styles.inputStyleIcon}> {this.state.passwordError} </Text>
+          </View>
 
+          <View style={{flexDirection:"row"}}>
           <TextInput id='ad'
             placeholder="Ad"
             underlineColorAndroid='transparent'
             placeholderTextColor="gray"
             style={styles.inputStyleKK}
             maxLength={20}
-            onChangeText={(text) => {
-              let musteri = this.state.Musteri;
-              musteri.ad = text;
-              this.setState({ Musteri: musteri })
-              this.validateText(text)
-            }}
+            value={this.state.Musteri.ad}
+            onChangeText={(text) => this.validateAd(text)}
           />
-          
+          <Text style={styles.inputStyleIcon}> {this.state.adError} </Text>
+          </View>
+
+          <View style={{flexDirection:"row"}}>
           <TextInput id='soyad'
             placeholder="Soyad"
             underlineColorAndroid='transparent'
             placeholderTextColor="gray"
             style={styles.inputStyleKK}
             maxLength={20}
-            onChangeText={(text) => {
-              let musteri = this.state.Musteri;
-              musteri.soyad = text;
-              this.setState({ Musteri: musteri })
-              this.validateText(text)
-            }}
+            value={this.state.Musteri.soyad}
+            onChangeText={(text) =>this.validateSoyad(text)}
           />
+          <Text style={styles.inputStyleIcon}> {this.state.soyadError} </Text>
+          </View>
         </View>
         <View style={styles.buttonContainerKK}>
-          <TouchableOpacity
-            style={styles.buttonStyleKK}
+          <TouchableOpacity style={styles.buttonStyleKK}
             onPress={() => { this.KayitOl() }}>
             <Text style={styles.buttonColorKK} > Devam </Text>
           </TouchableOpacity>
-        </View>
-        <TouchableHighlight style={styles.buttonRegisterKK}>
+        <View style={styles.buttonRegisterKK}>
           <Text style={styles.buttonColor}>Kaydı tamamlamak için devam edin..</Text>
-        </TouchableHighlight>
+        </View>
+        </View>
+
+        </ScrollView>
       </View>
     );
   }

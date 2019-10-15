@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, TouchableOpacity, ImageBackground, TouchableHighlight, ScrollView } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import styles from '../styles.js';
+import styles from '../faturaHavaleVirmanStyle.js';
 
 export default class FaturaOdemeKurumSecimi extends Component {
   constructor(props) {
@@ -9,9 +8,8 @@ export default class FaturaOdemeKurumSecimi extends Component {
     this.state = {
     };
   }
-
   render() {
-    const { musteriNo } = this.props.navigation.state.params;
+    const { musteriNo,islemTuruID } = this.props.navigation.state.params;
     return (
       <View style={styles.container}>
         <ScrollView>
@@ -36,7 +34,7 @@ export default class FaturaOdemeKurumSecimi extends Component {
             <View style={styles.buttonContainer}>
               <TouchableOpacity
                 style={styles.buttonStyle}
-                onPress={() => { this.props.navigation.navigate('FaturaOdemeAboneBilgi') }}>
+                onPress={() => { this.props.navigation.navigate('FaturaOdemeAboneBilgi',{musteriNo:musteriNo,islemTuruID:islemTuruID}) }}>
                 <Text style={styles.buttonColor}>SU</Text>
               </TouchableOpacity>
             </View>
@@ -60,7 +58,3 @@ export default class FaturaOdemeKurumSecimi extends Component {
     );
   }
 }
-
-
-
-

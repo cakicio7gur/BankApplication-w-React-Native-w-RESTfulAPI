@@ -1,23 +1,21 @@
 import React, { Component } from 'react';
-import { TouchableOpacity, Text, View, TextInput,Alert } from 'react-native';
+import { TouchableOpacity, Text, View, TextInput,Alert,ScrollView } from 'react-native';
 import DateTimePicker from "react-native-modal-datetime-picker";
 import moment from 'moment';
-import styles from '../styles.js';
+import styles from '../kullaniciKayitStyle.js';
+import * as EmailValidator from 'email-validator'
 export default class KullaniciKayit2 extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      tckn:'',
-      sifre:'',
-      ad:'',
-      soyad:'',
+      mailError:"",
+      phoneError:"",
       Musteri:{},
       validateText: false,
       validateNumber: false,
       validateEmail: false,
       validatedogumtarihi:false,
       isDateTimePickerVisible: false,
-      chosenDate: '1997-08-13',
     }
   }
 
@@ -42,8 +40,8 @@ export default class KullaniciKayit2 extends React.Component {
                     }
                 })
                 .then(()=>{
-                    Alert.alert("Kayıt Olma işlemi gerçekleştirildi",
-                    "Kullanıcı kayıt olma işlemi gerçekleştirildi",[{text:'OK',onPress:()=>{
+                    Alert.alert("Başarılı!",
+                    "Kayıt işlemi başarılı bir şekilde tamamlanmıştır.",[{text:'OK',onPress:()=>{
                       this.props.navigation.navigate('Login')
                     }}])
                 })
@@ -53,43 +51,42 @@ export default class KullaniciKayit2 extends React.Component {
         }
     else{
        {
-           Alert.alert('Hata!', 'Lütfen bilgileri eksizksiz giriniz!')
+           Alert.alert('Hata!', 'Lütfen bilgileri eksiksiz giriniz!')
        }
     }
 }
 validateEmail = (text) => {
-  if(text != ''){
-    this.setState({validateEmail : true})
+  if(text != '' && EmailValidator.validate(text) ){
+    this.setState({validateEmail : true,mailError:""})
   }
   else{
-    this.setState({validateEmail: false})      
+    this.setState({validateEmail: false,mailError:"!"})      
   }  
 }
 validateNumber = (text) => {
-  if(text !== ''){
-    let musteri = this.state.Musteri;
-    musteri.cepTelefonu = text.replace(/[^0-9]/g, ''); 
-    this.setState({
-      Musteri: musteri,
-      validateNumber: true, 
-    }); 
+  let musteri = this.state.Musteri;
+  musteri.cepTelefonu = text.replace(/[^0-9]/g, ''); 
+  this.setState({Musteri: musteri});
+  if(text !== '' && musteri.cepTelefonu.length==11){
+    this.setState({validateNumber: true,phoneError:""}); 
 }
   else
-    this.setState({validateNumber: false})
+    this.setState({validateNumber: false,phoneError:"!"})
 }
 validateText = (text) => {
-  alph=/^[a-z\sa-zA-ZğüşöçİĞÜŞÖÇ\sA-Z]+$/
-  if(alph.test(text) && text != ''){
-    this.setState({validateText: true})
+  let musteri=this.state.Musteri;
+  musteri.acikAdres=text.replace(/[&+=?@€£$¥#|'~₺{}<>;^*%!-]/g, '');
+  this.setState({Musteri:musteri})
+  if (text != '') {
+    this.setState({ validateText: true })
   }
-  else{
-    this.setState({validateText: false})
+  else {
+    this.setState({ validateText: false })
   }
 }
 handlePicker = (datetime) => {
   let musteri = this.state.Musteri;
-  musteri.dogumTarihi = moment(datetime).format('YYYY-MM-DD');
- 
+  musteri.dogumTarihi = moment(datetime).format('DD MMMM YYYY');
   this.setState({
     isDateTimePickerVisible: false,
     Musteri: musteri,
@@ -107,12 +104,12 @@ showPicker = () => {
   render() {
     return (
       <View style={styles.container}>
+        <ScrollView>
         <View style={styles.inputContainerKK}>
-        <View style={{flexDirection:"row"}}>
-        <Text style={{margin:15}}>Doğum Tarihi:</Text>
-        <TouchableOpacity onPress={this.showPicker} style={styles.datetimeText}>
-                  <Text style={{color: 'black', fontSize: 15, fontWeight: 'bold'}}>{this.state.Musteri.dogumTarihi}</Text>
-                </TouchableOpacity>
+        <TouchableOpacity style={styles.datetimeText}
+        onPress={this.showPicker}>
+          <Text style={{color: 'gray', fontSize: 15,}}>Doğum Tarihi Seçiniz:  <Text style={{color:"black"}}>{this.state.Musteri.dogumTarihi}</Text></Text>
+        </TouchableOpacity>
                 <DateTimePicker
                   isVisible={this.state.isDateTimePickerVisible}
                   onConfirm={this.handlePicker}
@@ -120,20 +117,25 @@ showPicker = () => {
                   mode={'date'}
                   datePickerModeAndroid={'calendar'}
                   maximumDate={new Date()}
-                /> 
-          </View> 
-          <TextInput id='email' 
+                />
+          <View style={{flexDirection:"row"}}>
+            <TextInput id='email' 
             maxLength={20}
             placeholder="E-Mail"
             underlineColorAndroid='transparent'
             placeholderTextColor="gray"
             style={styles.inputStyleKK}
+            keyboardType={'email-address'}
             onChangeText={(text) =>{
               let musteri = this.state.Musteri;
               musteri.mail = text;
               this.setState({Musteri: musteri}) 
               this.validateEmail(text)}}
           />
+          <Text style={styles.inputStyleIcon}> {this.state.mailError} </Text>
+          </View>
+
+          <View style={{flexDirection:"row"}}>
           <TextInput 
             maxLength={11} 
             keyboardType={'phone-pad'}
@@ -141,12 +143,12 @@ showPicker = () => {
             underlineColorAndroid='transparent'
             placeholderTextColor="gray"
             style={styles.inputStyleKK}
-            onChangeText={(text) =>{
-              let musteri = this.state.Musteri;
-              musteri.cepTelefonu = text;
-              this.setState({Musteri: musteri}) 
-              this.validateNumber(text)}}
+            value={this.state.Musteri.cepTelefonu}
+            onChangeText={(text) =>this.validateNumber(text)}
           />
+          <Text style={styles.inputStyleIcon}> {this.state.phoneError} </Text>
+          </View>
+
           <TextInput id='acikAdres' 
             maxLength={50} 
             multiline={true}
@@ -154,11 +156,8 @@ showPicker = () => {
             underlineColorAndroid='transparent'
             placeholderTextColor="gray"
             style={styles.inputStyleKK}
-            onChangeText={(text) =>{
-              let musteri = this.state.Musteri;
-              musteri.acikAdres = text;
-              this.setState({Musteri: musteri}) 
-              this.validateText(text)}}
+            value={this.state.Musteri.acikAdres}
+            onChangeText={(text) =>this.validateText(text)}
           />
 
         </View>
@@ -171,8 +170,9 @@ showPicker = () => {
         </View>
         <TouchableOpacity style={styles.buttonRegisterKK}
           onPress={() => { this.props.navigation.navigate('Login') }}>
-          <Text style={styles.buttonColor}>Zaten Üye Misin? Giriş Yap</Text>
+          <Text style={styles.registerColorKK}>Zaten Üye Misin? Giriş Yap</Text>
         </TouchableOpacity>
+      </ScrollView>
       </View>
     );
   }

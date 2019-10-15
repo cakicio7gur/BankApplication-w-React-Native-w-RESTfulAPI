@@ -71,7 +71,7 @@ export default class Hesaplarim extends React.Component {
                         <TouchableOpacity style={styles.buttonStyleHesaplarim}>
                             <Icon name="plus" size={16} color="white" backgroundColor="#c5002F">
                                 <Text style={styles.buttonColorMenu}
-                                    onPress={() => { this.hesapOlustur() }}>  YENİ HESAP AÇ</Text>
+                                    onPress={() => { this.hesapOlustur() }}>  YENİ HESAP AÇ </Text>
                             </Icon>
                         </TouchableOpacity>
                     </View>

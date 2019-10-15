@@ -1,26 +1,26 @@
 import React, { Component } from 'react';
 import { Text, View, TouchableOpacity, TouchableHighlight, ScrollView, TextInput, Alert } from 'react-native';
 import moment from 'moment';
-import styles from '../styles.js';
+import styles from '../faturaHavaleVirmanStyle.js';
 export default class HavaleGonderilecekTutar extends Component {
   constructor(props) {
     super(props);
     this.state = {
       validateTutar: false,
-      tutar:""
+      tutar:''
     };
   }
   tutarKontrol = () => {
     var islemTarihi = moment().format();
     const { musteriNo, aliciHesap, gonderenHesap, islemTuruID } = this.props.navigation.state.params;
-    if (parseFloat(this.state.tutar) > 0) {
-      if (gonderenHesap.bakiye < parseFloat(this.state.tutar)) {
+    if (parseFloat(this.state.tutar).toFixed(2) > 0) {
+      if (gonderenHesap.bakiye < parseFloat(this.state.tutar).toFixed(2)) {
         Alert.alert(
           "Yetersiz Bakiye!",
-          "Göndermek istediğiniz tutar kullanılabilir bakiyeden küçük olmalıdır!")
+          "Seçilen hesap bakiyesi, işlem için yetersizdir!")
       }
       else {
-        this.props.navigation.navigate('HavaleVirmanOnayEkrani', { musteriNo: musteriNo, aliciHesap: aliciHesap, gonderenHesap: gonderenHesap, gonderilecekTutar: this.state.tutar, islemTuruID: islemTuruID, islemTarihi: islemTarihi })
+        this.props.navigation.navigate('HavaleVirmanOnayEkrani', { musteriNo: musteriNo, aliciHesap: aliciHesap, gonderenHesap: gonderenHesap, gonderilecekTutar: parseFloat(this.state.tutar).toFixed(2), islemTuruID: islemTuruID, islemTarihi: islemTarihi })
       }
     }
     else {
@@ -29,13 +29,15 @@ export default class HavaleGonderilecekTutar extends Component {
         "Göndermek istediğiniz tutar 0 dan büyük olmalıdır!")
     }
   }
+
   validateTutar = (text) => {
-    this.setState({ tutar: text.replace(/[^0-9]/g, '') });
-    if (text != '')
-      this.setState({ validateTutar: true })
+    this.setState({tutar:text.replace(/[^0-9.]/g, '')});
+    if(text != '')
+      this.setState({validateTutar: true})
     else
-      this.setState({ validateTutar: false })
+      this.setState({validateTutar: false})
   }
+
   render() {
 
     return (
@@ -59,9 +61,10 @@ export default class HavaleGonderilecekTutar extends Component {
                 underlineColorAndroid='transparent'
                 placeholderTextColor="gray"
                 keyboardType="phone-pad"
-                maxLength={7}
-                onChangeText={(text) => this.validateTutar(text)}>
-              </TextInput>
+                value = {this.state.tutar}
+                maxLength={11}
+                onChangeText={(text) => this.validateTutar(text)}
+                />
             </View>
 
             <View style={styles.buttonContainer}>

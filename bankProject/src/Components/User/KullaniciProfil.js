@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity, TouchableHighlight, ScrollView } from 'react-native';
+import { Text, View, Image, TouchableOpacity, TouchableHighlight, ScrollView } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
-import styles from '../styles.js';
+import styles from '../kullaniciProfilStyle.js';
 export default class KullaniciProfil extends Component {
 
   render() {

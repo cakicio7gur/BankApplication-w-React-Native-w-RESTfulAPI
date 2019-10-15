@@ -2,11 +2,12 @@ import { createAppContainer } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import React from 'react';
-import { Image } from 'react-native';
 
 import Hesaplarim from './Components/Hesap/Hesaplarim'
 import HesapDetaylari from './Components/Hesap/HesapDetaylari'
 import HesapHareketleri from './Components/Hesap/HesapHareketleri'
+import HesapParaCekme from './Components/Hesap/HesapParaCekme'
+import HesapParaYatirma from './Components/Hesap/HesapParaYatirma'
 import Anasayfa from './Components/Menu/Anasayfa'
 
 import Login from './Components/User/Login';
@@ -25,14 +26,14 @@ import FaturaOdemeFaturaSecimi from './Components/Fatura/FaturaOdemeFaturaSecimi
 import FaturaOdemeHesapSecimi from './Components/Fatura/FaturaOdemeHesapSecimi';
 import FaturaOdemeOnayEkrani from './Components/Fatura/FaturaOdemeOnayEkrani';
 
-
-CikisYap=()=>{
+/*CikisYap=()=>{
     fetch("http://bankrestapi.azurewebsites.net/api/Security/Logout")
     .then((data)=>{
-        this.props.navigation.navigate("Login")
+        if(data.ok)
+            this.props.navigation.navigate("Login")
         .catch(err=>alert(err));
        })
-    }
+}*/
 const MainNavigator = createStackNavigator({
     Login: {
         screen: Login,
@@ -79,7 +80,7 @@ const MainNavigator = createStackNavigator({
             title: "RedBank",
             headerLeft: <Icon name="power-off" size={25} color="white"
                 style={{ marginLeft: 15 }}
-                onPress={() => this.CikisYap()} />,
+                onPress={() =>navigation.navigate("Login")} />,
             headerRight: <Icon name="user" size={25} color="white"
                 style={{ marginRight: 15 }}
                 onPress={() => navigation.navigate("KullaniciProfil")} />,
@@ -335,6 +336,38 @@ const MainNavigator = createStackNavigator({
                 onPress={() => navigation.navigate("Anasayfa")} />,
         }),
     },
+    HesapParaCekme: {
+        screen: HesapParaCekme,
+        navigationOptions: ({ navigation }) => ({
+            title: "Para Çekme",
+            headerStyle: {
+                backgroundColor: "#c5002f",
+            },
+            headerTitleStyle: {
+                color: 'white',
+            },
+            headerTintColor: 'white', // header back button color
+            headerRight: <Icon name="home" size={25} color="white"
+                style={{ marginRight: 15 }}
+                onPress={() => navigation.navigate("Anasayfa")} />,
+        }),
+    },
+    HesapParaYatirma:{
+        screen: HesapParaYatirma,
+        navigationOptions: ({ navigation }) => ({
+            title: "Para Yatırma",
+            headerStyle: {
+                backgroundColor: "#c5002f",
+            },
+            headerTitleStyle: {
+                color: 'white',
+            },
+            headerTintColor: 'white', // header back button color
+            headerRight: <Icon name="home" size={25} color="white"
+                style={{ marginRight: 15 }}
+                onPress={() => navigation.navigate("Anasayfa")} />,
+        }),
+    }
 });
 
 const AppNavigator = createAppContainer(MainNavigator);

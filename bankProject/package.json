@@ -10,10 +10,13 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@react-native-community/datetimepicker": "^2.1.0",
+    "email-validator": "^2.0.4",
     "moment": "^2.24.0",
     "prop-types": "^15.7.2",
     "react": "16.9.0",
     "react-native": "0.61.2",
+    "react-native-datepicker": "^1.7.2",
     "react-native-device-info": "^3.1.4",
     "react-native-gesture-handler": "^1.4.1",
     "react-native-modal-datetime-picker": "^7.6.0",

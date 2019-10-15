@@ -1,38 +1,43 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, ImageBackground, TouchableHighlight, ScrollView } from 'react-native';
-import styles from '../styles.js';
+import { Text, View, TouchableOpacity,Alert, ScrollView } from 'react-native';
+import styles from '../faturaHavaleVirmanStyle.js';
+import moment from 'moment';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 export default class FaturaOdemeFaturaSecimi extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      disabled: false
     };
   }
-
   render() {
+    const { musteriNo,Fatura,islemTuruID } = this.props.navigation.state.params;
+
+    let faturalar = Fatura.map((fatura) => {
+      const sbstringAd = fatura.ad.substring(0,1)
+      const sbstringSoyad = fatura.soyad.substring(0,1)
+        return (
+        <View style={styles.buttonContainer} key={fatura.faturaID}>
+        <TouchableOpacity style={styles.hesapBilgiContainer}
+                    onPress={() => {this.props.navigation.navigate('FaturaOdemeHesapSecimi',{musteriNo:musteriNo,odenecekFatura:fatura,islemTuruID:islemTuruID})}}>
+                    <Text style={styles.hesapText}> Son Ödeme Tarihi: <Text style={{color:"#c5002f",fontWeight:"bold"}}>{moment(fatura.sonOdemeTarihi).format("DD/MM/YYYY")}  <Icon name="hourglass-end" size={13} color="#c5002f"></Icon></Text></Text>          
+                    <Text style={styles.hesapText}> Ad Soyad: {sbstringAd+"** "+sbstringSoyad+"**"}</Text>
+                    <Text style={styles.hesapText}> Abone No: {fatura.aboneNo} </Text>
+                    <Text style={styles.hesapText}> Fatura Tutarı: <Text style={styles.hesapNo}>{fatura.faturaTutari} TL </Text></Text>
+        </TouchableOpacity>
+      </View>
+      )
+  })
     return (
       <View style={styles.container,{marginTop:15}}>
         <ScrollView>
           <View style={styles.body}>
             <View style={styles.buttonContainer}>
-              <View
-                style={styles.buttonStyleHesap}>
+              <View style={styles.buttonStyleHesap}>
                 <Text style={styles.buttonColorMenu}>FATURA SEÇİMİ</Text>
               </View>
             </View>
-
-            <View style={styles.buttonContainer}>
-              <TouchableOpacity
-                style={styles.buttonStyleFaturaSecimi}
-                onPress={()=>{this.props.navigation.navigate('FaturaOdemeHesapSecimi')}}>
-                <Text style={styles.buttonColor}>
-                  Son Ödeme Tarihi: 22/03/2019{"\n"}{"\n"}
-                  Ad Soyad: Öz*** Ça**** {"\n"}{"\n"}
-                  Abone No: 678965</Text>
-                <Text style={{ fontWeight: "bold" }}>{"\n"}{"\n"}98,60 TL </Text>
-              </TouchableOpacity>
-            </View>
-
+            {faturalar}
           </View>
         </ScrollView>
       </View>
