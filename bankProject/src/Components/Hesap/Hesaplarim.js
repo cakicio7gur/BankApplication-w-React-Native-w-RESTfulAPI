@@ -1,6 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, Text, View, ScrollView, Alert } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 import moment from 'moment';
 import styles from './hesaplarimStyle.js';
 
@@ -24,6 +24,19 @@ export default class Hesaplarim extends React.Component {
     componentDidMount() {
         this.hesapGetir();
     }
+
+    componentWillUnmount() {
+        this.focusListener.remove();
+      }
+    
+    componentDidUpdate(prevProps, prevState, snapshot) {
+    const {navigation} = this.props;
+
+    this.focusListener = navigation.addListener('didFocus', () => {
+        this.hesapGetir();
+    });
+    }
+
     hesapOlustur = () => {
         var acilisTarihi = moment().format();
         const { musteriNo } = this.props.navigation.state.params;
@@ -59,8 +72,8 @@ export default class Hesaplarim extends React.Component {
                         this.props.navigation.navigate("HesapDetaylari", { hesapNo: hesap.hesapNo });
                     }}>
                     <Text style={styles.hesapNo}> {hesap.musteriNo} - {hesap.ekNo} </Text>
-                    <Text style={styles.hesapText}> Bakiye: {hesap.bakiye} TL</Text>
-                    <Text style={styles.hesapText}> Kullanılabilir Bakiye: {hesap.bakiye} TL</Text>
+                    <Text style={styles.hesapText}> Bakiye: {parseFloat(hesap.bakiye).toFixed(2)} TL</Text>
+                    <Text style={styles.hesapText}> Kullanılabilir Bakiye: {parseFloat(hesap.bakiye).toFixed(2)} TL</Text>
                 </TouchableOpacity>
             )
         })
@@ -68,10 +81,11 @@ export default class Hesaplarim extends React.Component {
             <View style={styles.container}>
                 <ScrollView>
                     <View style={styles.buttonContainerHesaplarim}>
-                        <TouchableOpacity style={styles.buttonStyleHesaplarim}>
+                        <TouchableOpacity 
+                        style={styles.buttonStyleHesaplarim}
+                        onPress={() => { this.hesapOlustur() }}>
                             <Icon name="plus" size={16} color="white" backgroundColor="#c5002F">
-                                <Text style={styles.buttonColorMenu}
-                                    onPress={() => { this.hesapOlustur() }}>  YENİ HESAP AÇ </Text>
+                                <Text style={styles.buttonColorMenu}>  YENİ HESAP AÇ </Text>
                             </Icon>
                         </TouchableOpacity>
                     </View>

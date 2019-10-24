@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text,View,TouchableOpacity,ScrollView } from 'react-native';
+import {Text,View,TouchableOpacity,ScrollView,BackHandler } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import styles from '../faturaHavaleVirmanStyle.js';
 export default class Anasayfa extends Component {
@@ -10,8 +10,11 @@ export default class Anasayfa extends Component {
       bakiye: 0,
     };
   }
-
   componentDidMount() {
+    this.fetchInvoice();
+  }
+
+  fetchInvoice = () => {
     const { musteriNo } = this.props.navigation.state.params;
     fetch(
       'http://bankrestapi.azurewebsites.net/api/Hesap/GetToplamBakiye/'+musteriNo,
@@ -22,6 +25,20 @@ export default class Anasayfa extends Component {
       })
       .catch(err => alert(err));
   }
+  
+  componentWillUnmount() {
+    this.focusListener.remove();
+    BackHandler.removeEventListener('hardwareBackPress', this.backPressed);
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    const {navigation} = this.props;
+
+    this.focusListener = navigation.addListener('didFocus', () => {
+      this.fetchInvoice();
+    });
+  }
+
 
   render() {
     const { musteriNo } = this.props.navigation.state.params;
@@ -31,7 +48,7 @@ export default class Anasayfa extends Component {
           <View style={styles.header}>
           <Icon name="database" style={{marginTop:15}} size={90} color="#c5002f"></Icon>
             <Text style={styles.total,{marginTop:15}}>VARLIKLARIM</Text>
-            <Text style={styles.cost}> {this.state.bakiye} TL</Text>
+            <Text style={styles.cost}> {parseFloat(this.state.bakiye).toFixed(2)} TL</Text>
           </View>
 
           <View style={styles.bodyHome}>
@@ -66,7 +83,7 @@ export default class Anasayfa extends Component {
                 </Icon>
               </TouchableOpacity>
             </View>
-
+ 
             <View style={styles.buttonContainer}>
               <TouchableOpacity
                 style={styles.buttonStyleMenu}

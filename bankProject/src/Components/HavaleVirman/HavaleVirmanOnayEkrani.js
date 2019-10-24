@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, TouchableOpacity, TouchableHighlight, ScrollView, TextInput, Alert } from 'react-native';
+import { Text, View, TouchableOpacity, ScrollView, TextInput, Alert } from 'react-native';
 import styles from '../faturaHavaleVirmanStyle.js';
 import moment from 'moment';
 

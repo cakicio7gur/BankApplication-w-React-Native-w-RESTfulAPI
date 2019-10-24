@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity, Text, View, ScrollView, TouchableHighlight, Alert, Button } from 'react-native';
+import { TouchableOpacity, Text, View, ScrollView } from 'react-native';
 import Modal from 'react-native-modalbox'
 import moment from 'moment';
 import styles from './hesapHareketleriStyle.js';
@@ -8,7 +8,8 @@ export default class HesapHareketleri extends React.Component {
         super(props);
         this.state = {
             ParaTransferleri: [],
-            modalVisible: false
+            modalVisible: false,
+            choosenTransfer:{}
         }
     }
     componentDidMount() {
@@ -30,10 +31,11 @@ export default class HesapHareketleri extends React.Component {
             }
             else tutar = Math.abs(transfer.islemTutari);
 
-            let gonderenMusteriNo = transfer.gonderenHesapNo.toString().substring(0, 4);
-            let aliciMusteriNo = transfer.aliciHesapNo.toString().substring(0, 4);
-            let gonderenEkNo = transfer.gonderenHesapNo.toString().substring(4, 6);
-            let aliciEkNo = transfer.aliciHesapNo.toString().substring(4, 6);
+            let gonderenMusteriNo = transfer.gonderenHesapNo.toString().substring(0, 6);
+            let aliciMusteriNo = transfer.aliciHesapNo.toString().substring(0, 6);
+            let gonderenEkNo = transfer.gonderenHesapNo.toString().substring(6, 10);
+            let aliciEkNo = transfer.aliciHesapNo.toString().substring(6, 10);
+
             return (
                 <View style={{ flexDirection: 'row' }} key={transfer.ptID}>
                     <TouchableOpacity style={styles.tarih} activeOpacity={1}>
@@ -44,11 +46,18 @@ export default class HesapHareketleri extends React.Component {
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity style={[styles.hareketBilgi, transfer.gonderenHesapNo != hesapNo ? styles.gelenTutar : styles.gidenTutar]}
-                        onPress={() => { this.refs.modal3.open() }}>
+                        onPress={() => { 
+                            this.refs.modal3.open();
+                            this.setState({choosenTransfer: transfer}) 
+                        }}>
                         <View style={styles.bilgiView}>
-                            <Text style={styles.aliciGondericiStyle}>Gnd Hesap:  {gonderenMusteriNo} - {gonderenEkNo}</Text>
-                            <Text style={styles.aliciGondericiStyle}>Alıcı Hesap:  {aliciMusteriNo} - {aliciEkNo}</Text>
-
+                            {transfer.islemTuruID !== 4 && 
+                                <Text style={styles.aliciGondericiStyle}>{gonderenMusteriNo}-{gonderenEkNo} Nolu Hesaptan</Text>
+                            }
+                            {(transfer.islemTuruID === 1 || transfer.islemTuruID === 2 || transfer.islemTuruID === 4) &&
+                                <Text style={styles.aliciGondericiStyle}>{aliciMusteriNo}-{aliciEkNo} Nolu Hesaba</Text>
+                            }
+                        
                             <Text style={[styles.tutarStyle, transfer.gonderenHesapNo != hesapNo ? styles.gelenTutar : styles.gidenTutar]}>{parseFloat(tutar).toFixed(2)} TL</Text>
                         </View>
                         <View style={styles.islemStyle}>
@@ -70,27 +79,19 @@ export default class HesapHareketleri extends React.Component {
                         </View>
                         <View style={styles.textView}>
                             <Text style={styles.textInfo}>İşlem Tarihi</Text>
-                            <Text style={styles.textInfo}>07/10/2019 - 15:10</Text>
+                            <Text style={styles.textInfo}>{moment(this.state.choosenTransfer.islemTarihi).format("DD.MM.YYYY - HH:mm")}</Text>
                         </View>
                         <View style={styles.textView}>
                             <Text style={styles.textInfo}>Tutar</Text>
-                            <Text style={styles.textInfo}>100 TL</Text>
-                        </View>
-                        <View style={styles.textView}>
-                            <Text style={styles.textInfo}>Gönderen</Text>
-                            <Text style={styles.textInfo}>İbrahim Doğruer</Text>
-                        </View>
-                        <View style={styles.textView}>
-                            <Text style={styles.textInfo}>Alıcı</Text>
-                            <Text style={styles.textInfo}>Özgür Çakıcı</Text>
+                            <Text style={styles.textInfo}>{parseFloat(this.state.choosenTransfer.islemTutari).toFixed(2)} TL</Text>
                         </View>
                         <View style={styles.textView}>
                             <Text style={styles.textInfo}>İşlem Türü</Text>
-                            <Text style={styles.textInfo}>Havale</Text>
+                            <Text style={styles.textInfo}>{this.state.choosenTransfer.tur}</Text>
                         </View>
                         <View style={styles.textView}>
                             <Text style={styles.textInfo}>Açıklama</Text>
-                            <Text style={styles.textInfo}>Ben Okula Getmeye mi</Text>
+                            <Text style={styles.textInfo}>{this.state.choosenTransfer.aciklama}</Text>
                         </View>
 
                         <View style={styles.buttonContainer}>

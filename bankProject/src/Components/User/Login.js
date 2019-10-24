@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
-import { TouchableOpacity, Image, Text, View, TextInput, TouchableHighlight, Alert } from 'react-native';
+import { TouchableOpacity, Image, Text, View, TextInput, Alert } from 'react-native';
 import styles from '../loginStyle.js';
 
 export default class Login extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      Musteri:{},
       tckn:'',
       password:'',
       validatePassword:false,
       validateTCKN:false
     }
   }
+
   validateTCKN = (text) => {
     this.setState({tckn:text.replace(/[^0-9]/g, '')});
     if(text != '')
@@ -33,7 +35,8 @@ export default class Login extends React.Component {
            .then(res=>res.json())
            .then(response=>{
                let musteri =response;
-               this.props.navigation.navigate("Anasayfa",{musteriNo:musteri.musteriNo});
+               this.setState({Musteri:response})
+               this.props.navigation.navigate("Anasayfa",{musteriNo:musteri.musteriNo});  
               })
            .catch(err=>alert(err));
        }
@@ -41,6 +44,13 @@ export default class Login extends React.Component {
          Alert.alert('Hata!', 'Tckn veya Şifre hatalı!')}
     })
     .catch(err=>alert(err))
+  }
+
+  doClear=()=> {
+    let textInputPwd = this.refs["inputPw"];
+    let textInputTCKN = this.refs["inputTckn"];
+    textInputTCKN.clear();
+    textInputPwd.clear();
   }
     
   render() {
@@ -56,7 +66,8 @@ export default class Login extends React.Component {
         </View>
 
         <View style={styles.inputContainerLogin}>
-          <TextInput placeholder="TCKN"
+          <TextInput ref="inputTckn"
+            placeholder="TCKN"
             underlineColorAndroid='transparent'
             placeholderTextColor="gray"
             style={styles.inputStyleL}
@@ -65,7 +76,7 @@ export default class Login extends React.Component {
             keyboardType={'phone-pad'}
             onChangeText={(text) => this.validateTCKN(text)}
           />
-          <TextInput
+          <TextInput ref="inputPw"
             placeholder="***********"
             underlineColorAndroid='transparent'
             placeholderTextColor="gray"
@@ -78,7 +89,7 @@ export default class Login extends React.Component {
 
         <View style={styles.buttonContainerL}>
           <TouchableOpacity style={styles.buttonStyleLogin}
-            onPress={()=> {this.GirisYap()}}>
+            onPress={()=> {this.GirisYap(); this.doClear()}}>
             <Text style={styles.buttonColorLogin} > Giriş Yap </Text>
         </TouchableOpacity>
         </View>
@@ -87,6 +98,7 @@ export default class Login extends React.Component {
           <TouchableOpacity onPress={()=>this.props.navigation.navigate("KullaniciKayit")}>
             <Text style={styles.registerColor}>Kayıt Ol</Text></TouchableOpacity>
         </View>
+
         <View style={styles.bottomBosluk}></View>
       </View>
     );

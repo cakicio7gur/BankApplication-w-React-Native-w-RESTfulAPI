@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, TouchableOpacity, TouchableHighlight, ScrollView } from 'react-native';
+import { Text, View, TouchableOpacity, ScrollView } from 'react-native';
 import styles from '../faturaHavaleVirmanStyle.js';
 export default class VirmanAliciHesap extends Component {
   constructor(props) {
@@ -27,8 +27,8 @@ export default class VirmanAliciHesap extends Component {
         <TouchableOpacity style={styles.buttonContainer} 
         onPress={() => {this.props.navigation.navigate('HavaleVirmanGonderenHesap',{ musteriNo: musteriNo, aliciHesap:hesap,islemTuruID:islemTuruID}) }}>
               <Text style={styles.hesapNo}> {hesap.musteriNo} - {hesap.ekNo} </Text>
-              <Text style={styles.hesapText}> Bakiye: {hesap.bakiye} TL</Text>
-              <Text style={styles.hesapText}> Kullanılabilir Bakiye: {hesap.bakiye} TL</Text>
+              <Text style={styles.hesapText}> Bakiye: {parseFloat(hesap.bakiye).toFixed(2)} TL</Text>
+              <Text style={styles.hesapText}> Kullanılabilir Bakiye: {parseFloat(hesap.bakiye).toFixed(2)} TL</Text>
         </TouchableOpacity>
       </View>
       )

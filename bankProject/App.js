@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import AppNavigator from './src/AppNavigator'
+import AppNavigator from './src/AppNavigator';
 require('moment/locale/tr.js');
 
 export default class App extends Component {

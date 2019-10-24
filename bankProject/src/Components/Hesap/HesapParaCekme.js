@@ -82,8 +82,8 @@ export default class HesapParaCekme extends Component {
 
             <View style={styles.buttonContainerPY}>
               <Text style={styles.hesapNo}> {Hesap.musteriNo} - {Hesap.ekNo} </Text>
-              <Text style={styles.hesapText}> Bakiye: {Hesap.bakiye} TL</Text>
-              <Text style={styles.hesapText}> Kullanılabilir Bakiye: {Hesap.bakiye} TL</Text>
+              <Text style={styles.hesapText}> Bakiye: {parseFloat(Hesap.bakiye).toFixed(2)} TL</Text>
+              <Text style={styles.hesapText}> Kullanılabilir Bakiye: {parseFloat(Hesap.bakiye).toFixed(2)} TL</Text>
             </View>
 
             <View style={styles.buttonContainer}>
