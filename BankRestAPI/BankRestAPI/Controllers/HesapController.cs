@@ -54,10 +54,10 @@ namespace BankRestAPI.Controllers
             return Ok();
         }
         [HttpDelete]
-        public IHttpActionResult Delete(int id)
+        public IHttpActionResult Delete(HesapDTO model)
         {
             HesapBLL hesapBusiness = new HesapBLL();
-            hesapBusiness.Delete(id);
+            hesapBusiness.Delete(model);
             return Ok();
         }
         [HttpGet]

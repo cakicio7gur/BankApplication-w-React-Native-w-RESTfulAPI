@@ -26,6 +26,12 @@ namespace BankRestAPI.Controllers
             return Ok(model);
         }
 
+        public IHttpActionResult GetMusteriByTckn(string tckn)
+        {
+            MusteriBLL musteriBusiness = new MusteriBLL();
+            var model = musteriBusiness.GetMusteriByTckn(tckn);
+            return Ok(model);
+        }
         public IHttpActionResult GetByTcknPassword(string tckn, string password)
         {
             MusteriBLL musteriBusiness = new MusteriBLL();
@@ -47,7 +53,7 @@ namespace BankRestAPI.Controllers
             musteriBusiness.Update(model);
             return Ok();
         }
-
+        [HttpDelete]
         public IHttpActionResult Delete(int id)
         {
             MusteriBLL musteriBusiness = new MusteriBLL();

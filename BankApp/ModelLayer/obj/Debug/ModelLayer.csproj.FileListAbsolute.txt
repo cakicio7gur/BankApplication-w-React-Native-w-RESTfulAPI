@@ -32,3 +32,4 @@ C:\Users\IbrahimD\Documents\GitHub\BankApplication-React-Native-and-.NET-MVC\Ban
 C:\Users\IbrahimD\Documents\GitHub\BankApplication-React-Native-and-.NET-MVC\BankApp\ModelLayer\obj\Debug\ModelLayer.csproj.CopyComplete
 C:\Users\IbrahimD\Documents\GitHub\BankApplication-React-Native-and-.NET-MVC\BankApp\ModelLayer\obj\Debug\ModelLayer.dll
 C:\Users\IbrahimD\Documents\GitHub\BankApplication-React-Native-and-.NET-MVC\BankApp\ModelLayer\obj\Debug\ModelLayer.pdb
+C:\Users\IbrahimD\Documents\GitHub\BankApplication-React-Native-and-.NET-MVC\BankApp\ModelLayer\obj\Debug\ModelLayer.csprojAssemblyReference.cache

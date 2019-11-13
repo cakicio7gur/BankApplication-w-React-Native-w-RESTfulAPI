@@ -48,6 +48,31 @@ namespace BusinessLayer.BLLs
             }
         }
 
+        public MusteriDTO GetMusteriByTckn(string tckn)
+        {
+            using (MusteriRepository musteriRepo = new MusteriRepository())
+            {
+                try
+                {
+                    var model = musteriRepo.GetByFilter(x => x.tckn == tckn, x => x.Hesap, x => x.AcilisPlatformu).ToList();
+                    if (model.Count > 0)
+                    {
+                        return musteriMapper.Map(model[0]);
+                    }
+                    else
+                    {
+                        return null;
+                    }
+
+                }
+                catch
+                {
+                    throw;
+                }
+
+            }
+        }
+
         public MusteriDTO GetByTcknPassword(string tckn,string password)
         {
 
@@ -107,6 +132,7 @@ namespace BusinessLayer.BLLs
                 try
                 {
                     var musteri = new Musteri();
+                    musteri.musteriNo = model.musteriNo;
                     musteri.sifre = model.sifre;
                     musteri.tckn = model.tckn;
                     musteri.ad = model.ad;

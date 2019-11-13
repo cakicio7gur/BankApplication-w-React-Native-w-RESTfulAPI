@@ -37,7 +37,7 @@ namespace BusinessLayer.BLLs
             {
                 try
                 {
-                    var model = hesapRepo.GetById(x => x.hesapNo == id, x => x.Musteri, x => x.AcilisPlatformu);
+                    var model = hesapRepo.GetById(x => x.hesapNo == id && x.acilisPlatformID != 4, x => x.Musteri, x => x.AcilisPlatformu);
                     return hesapMapper.Map(model);
                 }
                 catch
@@ -54,7 +54,7 @@ namespace BusinessLayer.BLLs
             {
                 try
                 {
-                    var model = hesapRepo.GetByFilter(x => x.musteriNo == musteriNo, x => x.Musteri, x => x.AcilisPlatformu);
+                    var model = hesapRepo.GetByFilter(x => x.musteriNo == musteriNo && x.acilisPlatformID != 4, x => x.Musteri, x => x.AcilisPlatformu);
                     return hesapMapper.MapAll(model);
                 }
                 catch
@@ -71,10 +71,10 @@ namespace BusinessLayer.BLLs
             {
                 try
                 {
-                    var hesapAdet = GetByMusteriNo(model.musteriNo).Count;
+                    var hesapAdet = hesapRepo.GetByFilter(x => x.musteriNo == model.musteriNo, x => x.Musteri, x => x.AcilisPlatformu).ToList().Count; 
                     var hesap = new Hesap();
                     hesap.musteriNo = model.musteriNo;                                                          
-                    hesap.ekNo = 10 + hesapAdet;
+                    hesap.ekNo = 1001 + hesapAdet;
                     hesap.hesapNo = Convert.ToInt32(model.musteriNo.ToString() + hesap.ekNo.ToString());
                     hesap.hesapAcilisTarihi = model.hesapAcilisTarihi;
                     hesap.bakiye = model.bakiye;
@@ -124,13 +124,20 @@ namespace BusinessLayer.BLLs
                 }
             }
         }
-        public void Delete(int id)
+        public void Delete(HesapDTO model)
         {
             using (HesapRepository hesapRepo = new HesapRepository())
             {
                 try
                 {
-                    hesapRepo.Delete(id);
+                    var hesap = new Hesap();
+                    hesap.musteriNo = model.musteriNo;
+                    hesap.ekNo = model.ekNo;
+                    hesap.hesapNo = model.hesapNo;
+                    hesap.hesapAcilisTarihi = model.hesapAcilisTarihi;
+                    hesap.bakiye = model.bakiye;
+                    hesap.acilisPlatformID = model.acilisPlatformID;
+                    hesapRepo.Update(hesap);
                 }
                 catch
                 {
