@@ -30,8 +30,8 @@ export default class HavaleGonderenHesap extends Component {
         <TouchableOpacity style={styles.buttonContainer} 
         onPress={() => { this.props.navigation.navigate('HavaleVirmanGonderilecekTutar',{musteriNo:musteriNo,aliciHesap:aliciHesap,gonderenHesap:hesap,islemTuruID:islemTuruID})}}>
               <Text style={styles.hesapNo}> {hesap.musteriNo} - {hesap.ekNo} </Text>
-              <Text style={styles.hesapText}> Bakiye: {hesap.bakiye} TL</Text>
-              <Text style={styles.hesapText}> Kullanılabilir Bakiye: {hesap.bakiye} TL</Text>
+              <Text style={styles.hesapText}> Bakiye: {parseFloat(hesap.bakiye).toFixed(2)} TL</Text>
+              <Text style={styles.hesapText}> Kullanılabilir Bakiye: {parseFloat(hesap.bakiye).toFixed(2)} TL</Text>
         </TouchableOpacity>
       </View>
       )
@@ -43,8 +43,8 @@ export default class HavaleGonderenHesap extends Component {
           <TouchableOpacity style={styles.buttonContainer} 
           onPress={() => { this.props.navigation.navigate('HavaleVirmanGonderilecekTutar',{musteriNo:musteriNo,aliciHesap:aliciHesap,gonderenHesap:hesap,islemTuruID:islemTuruID})}}>
                 <Text style={styles.hesapNo}> {hesap.musteriNo} - {hesap.ekNo} </Text>
-                <Text style={styles.hesapText}> Bakiye: {hesap.bakiye} TL</Text>
-                <Text style={styles.hesapText}> Kullanılabilir Bakiye: {hesap.bakiye} TL</Text>
+                <Text style={styles.hesapText}> Bakiye: {parseFloat(hesap.bakiye).toFixed(2)} TL</Text>
+                <Text style={styles.hesapText}> Kullanılabilir Bakiye: {parseFloat(hesap.bakiye).toFixed(2)} TL</Text>
           </TouchableOpacity>
         </View>
         )

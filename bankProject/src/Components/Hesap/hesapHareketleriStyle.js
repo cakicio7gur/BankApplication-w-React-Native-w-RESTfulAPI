@@ -39,7 +39,7 @@ export default StyleSheet.create({
         color: '#ff0000',
     },
     modal: {
-        height: 275,
+        height: 225,
         width: 300,
         borderRadius: 5,
         borderColor: '#c5002f',
@@ -69,11 +69,11 @@ export default StyleSheet.create({
         borderWidth: .4,
         borderColor: '#c5002f',
         marginTop: 45,
-        padding: 4,
+        padding: 8,
         flexDirection: "row",
     },
     buttonContainer: {
-        flex: 0.4,
+        flex: 0.5,
         justifyContent: "center",
     },
     buttonText: {
@@ -82,7 +82,7 @@ export default StyleSheet.create({
         fontFamily: 'Bahnschrift'
     },
     aliciGondericiStyle: {
-        fontSize: 15,
+        fontSize: 13,
         margin: 5,
         fontFamily: 'Bahnschrift'
     },
@@ -104,7 +104,7 @@ export default StyleSheet.create({
         justifyContent: 'space-evenly'
     },
     tur: {
-        fontSize: 15,
+        fontSize: 13,
         fontStyle: 'italic',
         fontFamily: 'Bahnschrift',
         fontWeight: 'bold',

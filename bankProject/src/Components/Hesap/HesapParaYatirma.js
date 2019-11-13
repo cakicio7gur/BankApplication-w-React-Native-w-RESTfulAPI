@@ -16,7 +16,7 @@ export default class HesapParaYatirma extends Component {
       aliciHesapNo:Hesap.hesapNo,
       gonderenHesapNo:islemTuruID,
       islemTutari: this.state.tutar,
-      aciklama: "Para Çekme",
+      aciklama: "Para Yatırma",
       islemTarihi:islemTarihi,
       islemTuruID: islemTuruID
     }
@@ -78,8 +78,8 @@ export default class HesapParaYatirma extends Component {
 
             <View style={styles.buttonContainerPY}>
                     <Text style={styles.hesapNo}> {Hesap.musteriNo} - {Hesap.ekNo} </Text>
-                    <Text style={styles.hesapText}> Bakiye: {Hesap.bakiye} TL</Text>
-                    <Text style={styles.hesapText}> Kullanılabilir Bakiye: {Hesap.bakiye} TL</Text>
+                    <Text style={styles.hesapText}> Bakiye: {parseFloat(Hesap.bakiye).toFixed(2)} TL</Text>
+                    <Text style={styles.hesapText}> Kullanılabilir Bakiye: {parseFloat(Hesap.bakiye).toFixed(2)} TL</Text>
             </View>
 
             <View style={styles.buttonContainer}>

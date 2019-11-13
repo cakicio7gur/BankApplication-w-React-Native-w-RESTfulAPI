@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, TouchableOpacity, ImageBackground, TouchableHighlight, ScrollView } from 'react-native';
+import { Text, View, TouchableOpacity, ScrollView } from 'react-native';
 import styles from '../faturaHavaleVirmanStyle.js';
 
 export default class FaturaOdemeKurumSecimi extends Component {

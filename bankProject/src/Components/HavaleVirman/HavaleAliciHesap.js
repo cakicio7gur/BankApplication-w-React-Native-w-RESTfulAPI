@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, TouchableOpacity, TouchableHighlight, ScrollView, TextInput, Alert } from 'react-native';
+import { Text, View, TouchableOpacity, ScrollView, TextInput, Alert } from 'react-native';
 import styles from '../faturaHavaleVirmanStyle.js';
 export default class HavaleAliciHesap extends Component {
   constructor(props) {
@@ -12,8 +12,8 @@ export default class HavaleAliciHesap extends Component {
   }
   musteriGetir = () => {
     const { musteriNo, islemTuruID } = this.props.navigation.state.params;
-    let alicimusterino = this.state.aliciHesapNo.toString().substring(0, 4)
-    let gonderenmusterino = musteriNo.toString().substring(0, 4)
+    let alicimusterino = this.state.aliciHesapNo.toString().substring(0, 6)
+    let gonderenmusterino = musteriNo.toString().substring(0, 6)
     if (alicimusterino != gonderenmusterino) {
       fetch('http://bankrestapi.azurewebsites.net/api/Hesap/GetById/' + this.state.aliciHesapNo)
         .then(res => {
