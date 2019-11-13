@@ -13,8 +13,8 @@ In the next step, a data set will be trained with Python to assess whether custo
 * [Home Page](/Screenshoots/Anasayfa.jpeg) - The home page where I can choose transactions that I want
 * [User Profile](/Screenshoots/Profil.jpeg) - The page where I can see my personal informations and I can update those
 ### Account Transactions
-* [My Accounts](/Screenshoots/Hesaplarım.jpeg) - The page where I can see my accounts
-* [Account Details](/Screenshoots/HesapDetayları.jpeg) - The page where I can see the details of one of my accounts
+* [My Accounts](/Screenshoots/Hesaplarım.jpeg) - The page where I can see my accounts and I can create a new account
+* [Account Details](/Screenshoots/HesapDetayları.jpeg) - The page where I can see the details of one of my accounts and I can delete the account
 * [Withdraw Money](/Screenshoots/ParaCekme.jpeg) - The page where I can withdraw money from the account I selected
 * [Deposit](/Screenshoots/ParaYatirma.jpeg) - The page where I can deposit to the account I selected
 * [Account Activities](/Screenshoots/HesapHareketleri.jpeg) - The page where I can see my account activities
